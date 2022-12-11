@@ -1,47 +1,14 @@
 import React from 'react';
 
-const Users = () => {
+const Users = ({users}) => {
     return (
         <div className={'users'}>
-            <div className={'connected-user'}>
-                John
-            </div>
-            <div className={'connected-user'}>
-                John
-            </div>
-            <div className={'connected-user'}>
-                John
-            </div>
-            <div className={'connected-user'}>
-                John
-            </div>
-            <div className={'connected-user'}>
-                John
-            </div>
-            <div className={'connected-user'}>
-                John
-            </div>
-            <div className={'connected-user'}>
-                John
-            </div>
-            <div className={'connected-user'}>
-                John
-            </div>
-            <div className={'connected-user'}>
-                John
-            </div>
-            <div className={'connected-user'}>
-                John
-            </div>
-            <div className={'connected-user'}>
-                John
-            </div>
-            <div className={'connected-user'}>
-                John
-            </div>
-            <div className={'connected-user'}>
-                John
-            </div>
+            {
+                users.map((user, id) =>
+                    <div key={id} className={'connected-user'}>
+                        {user}
+                    </div>)
+            }
         </div>
     );
 };

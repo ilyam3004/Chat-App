@@ -1,13 +1,11 @@
-import React, {useState} from 'react';
-
-const Message = () => {
+const Message = ({message}) => {
     return (
         <div className={'message'}>
             <div className={'message-info'}>
-                <span>john</span>
+                <span>{message.username}</span>
             </div>
             <div className={'message-content'}>
-                <p>Message from John</p>
+                <p>{message.message}</p>
             </div>
         </div>
     );

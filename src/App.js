@@ -1,15 +1,10 @@
 import { useState } from "react";
 import { HubConnectionBuilder, LogLevel } from "@microsoft/signalr";
-import Room from './pages/Room/Room';
-import FormInput from "./components/Input/FormInput";
-import Lobby from "./pages/Lobby/Lobby";
-import './App.css';
 import AppRoutes from "./config/AppRoutes";
 
 function App() {
     const [connection, setConnection] = useState();
     const [messages, setMessages] = useState([]);
-    const [message, setMessage] = useState('');
     const [users, setUsers] = useState([]);
 
     const joinRoom = async (username, room) => {
@@ -18,10 +13,11 @@ function App() {
                 .withUrl("http://localhost:5279/chathub")
                 .configureLogging(LogLevel.Information)
                 .build();
-
-            connection.on("ReceiveMessage", (user, message) => {
-                console.log(`${user} : ${message}`)
-                setMessages(messages => [...messages, {user, message}]);
+            console.log(connection.connectionId);
+            connection.on("ReceiveMessage", (username, message) => {
+                console.log(`${username} : ${message}`);
+                setMessages(messages => [...messages, {username, message}]);
+                console.log(messages);
             });
 
             connection.on("UsersInRoom", (usersInRoom) => {
@@ -54,7 +50,11 @@ function App() {
     }
 
     return (
-        <AppRoutes/>
+        <AppRoutes joinRoom={joinRoom}
+                   users={users}
+                   sendMessage={sendMessage}
+                   messages={messages}
+                   closeConnection={closeConnection}/>
     );
 }
 

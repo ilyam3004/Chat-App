@@ -1,5 +1,6 @@
 import FormInput from "../../components/Input/FormInput";
 import { useState } from "react";
+import {useNavigate, } from "react-router-dom";
 import './Lobby.css';
 
 const Lobby = ({joinRoom}) => {
@@ -7,6 +8,7 @@ const Lobby = ({joinRoom}) => {
         username: "",
         room: ""
     });
+    let navigate = useNavigate();
 
     const inputs = [
         {
@@ -33,7 +35,10 @@ const Lobby = ({joinRoom}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        joinRoom(values.username, values.room);
+        if(values.username && values.room){
+            joinRoom(values.username, values.room);
+            navigate(`./room/${values.room}`)
+        }
     }
 
     const onChange = (e) => {
@@ -56,9 +61,9 @@ const Lobby = ({joinRoom}) => {
                     ))
                 }
                 <button className={'lobby-button'}
-                        type={'submit'}
-                        disabled={!values.username || !values.room}
-                >Join</button>
+                        type={'submit'}>
+                    Join
+                </button>
             </form>
         </div>
     );

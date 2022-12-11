@@ -3,12 +3,16 @@ import { Routes, Route } from 'react-router-dom';
 import Lobby from "../pages/Lobby/Lobby";
 import Room from "../pages/Room/Room";
 
-const AppRoutes = () => {
+const AppRoutes = (props) => {
     return (
         <div>
             <Routes>
-                <Route path="/" element={<Lobby/>}/>
-                <Route path="/room/:roomName" element={<Room/>}/>
+                <Route path="/" element={<Lobby joinRoom={props.joinRoom}/>}/>
+                <Route path="/room/:roomName"
+                       element={<Room users={props.users}
+                                      sendMessage={props.sendMessage}
+                                      messages={props.messages}
+                                      closeConnection={props.closeConnection}/>}/>
             </Routes>
         </div>
     )
