@@ -14,15 +14,14 @@ function App() {
                 .configureLogging(LogLevel.Information)
                 .build();
             console.log(connection.connectionId);
-            connection.on("ReceiveMessage", (username, message) => {
-                console.log(`${username} : ${message}`);
-                setMessages(messages => [...messages, {username, message}]);
-                console.log(messages);
+            connection.on("ReceiveMessage", (jsonMessage) => {
+                var message = JSON.parse(jsonMessage);
+                messages.push(message);
             });
 
             connection.on("UsersInRoom", (usersInRoom) => {
-                setUsers(usersInRoom);
-                console.log(usersInRoom);
+                var users = JSON.parse(usersInRoom);
+                setUsers(users);
             });
 
             await connection.start();

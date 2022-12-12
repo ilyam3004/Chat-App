@@ -2,7 +2,7 @@ import React from 'react';
 import {useEffect, useRef} from "react";
 import Message from "./Message/Message";
 
-const Messages = ({messages}) => {
+const Messages = ({messages, connectionId}) => {
     const messageRef = useRef();
 
     useEffect(() => {
@@ -18,7 +18,7 @@ const Messages = ({messages}) => {
                 messages.map((message, id) =>
                     (
                         <div key={id}>
-                            <Message message={message}/>
+                            <Message message={message} connectionId={connectionId}/>
                         </div>
                     ))
            }

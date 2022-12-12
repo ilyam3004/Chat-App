@@ -12,7 +12,8 @@ const AppRoutes = (props) => {
                        element={<Room users={props.users}
                                       sendMessage={props.sendMessage}
                                       messages={props.messages}
-                                      closeConnection={props.closeConnection}/>}/>
+                                      closeConnection={props.closeConnection}
+                                      connectionId={props.connectionId}/>}/>
             </Routes>
         </div>
     )
