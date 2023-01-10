@@ -16,3 +16,8 @@ export interface ITodo {
     title: string;
     completed: boolean;
 }
+
+export interface IJoinRoomRequest {
+    username: string;
+    roomname: string;
+}

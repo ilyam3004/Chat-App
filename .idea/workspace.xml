@@ -5,39 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="28be4fb5-b236-42b6-9895-14010dc5e2fd" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/Card.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/List.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/TodoItem.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/UserItem.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/UserList.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/handlers/EventsExample.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/TodosPage.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/UserPage.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/types/types.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/watcherTasks.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/LobbyInput.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/Lobby.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Chat.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ChatInput.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Input/FormInput.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Input/FormInput.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Message/Message.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Messages.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Navbar.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SideBar.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Users/Users.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config/AppRoutes.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Lobby/Lobby.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Lobby/Lobby.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Room/Room.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Room/Room.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Card.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/List.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/TodoItem.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/UserItem.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/UserList.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/handlers/EventsExample.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/events/EventsExample.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/TodosPage.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/UserPage.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/types/types.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/types.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,6 +61,12 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="es6.move.members.recent.items">
+      <recent name="D:\Learning\Projects\chat-app\src\components\LobbyInput.tsx" />
+      <recent name="D:\Learning\Projects\chat-app\src\pages\Lobby.tsx" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -86,7 +75,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1673280705773</updated>
-      <workItem from="1673280709035" duration="14456000" />
+      <workItem from="1673280709035" duration="15566000" />
+      <workItem from="1673367247266" duration="14594000" />
     </task>
     <servers />
   </component>
