@@ -5,22 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="28be4fb5-b236-42b6-9895-14010dc5e2fd" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/Chat.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ChatInput.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Message.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Messages.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Navbar.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Sidebar.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/User.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/UserList.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/Room.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/LobbyInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LobbyInput.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/events/EventsExample.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/events/EventsExample.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Lobby.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Lobby.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/types/types.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/types.tsx" afterDir="false" />
     </list>
@@ -84,7 +70,7 @@
       <workItem from="1673280709035" duration="15566000" />
       <workItem from="1673367247266" duration="15191000" />
       <workItem from="1673438274950" duration="13896000" />
-      <workItem from="1673466078515" duration="3438000" />
+      <workItem from="1673466078515" duration="5307000" />
     </task>
     <servers />
   </component>

@@ -38,7 +38,7 @@ export const Lobby: FC<LobbyProps> = ({joinRoom}) =>{
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (values.username && values.roomname){
-            console.log(values);
+            joinRoom(values);
         }
     }
 

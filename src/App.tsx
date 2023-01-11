@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Routes, Route} from "react-router-dom";
+import {Routes, Route, useNavigate} from "react-router-dom";
 import {HubConnection, HubConnectionBuilder, LogLevel} from "@microsoft/signalr";
 import {IJoinRoomRequest, IUser, IMessage, IRoom} from "./types/types";
 import {Lobby} from "./pages/Lobby";
@@ -12,6 +12,8 @@ function App() {
     const [messages, setMessages] = useState<IMessage[]>([]);
     const [room, setRoom] = useState<IRoom | null>(null);
 
+    const navigate = useNavigate();
+
     const joinRoom = async (request: IJoinRoomRequest) => {
         try {
             const connection = new HubConnectionBuilder()
@@ -23,8 +25,9 @@ function App() {
                 setMessages(messages => [...messages, message])
             });
 
-            connection.on("ReceiveRoom", (room: IRoom) => {
-                setRoom(room);
+            connection.on("ReceiveUserData", (user: IUser) => {
+                setRoom({ roomId: user.roomId, roomname: user.roomName});
+                navigate(`./room/${user.roomId}`)
             });
 
             connection.on("ReceiveRoomUsers", (users: IUser[]) => {

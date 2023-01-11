@@ -13,9 +13,9 @@ interface ChatProps{
 
 export const Chat: FC<ChatProps> = ({messages, connection, room}) => {
     return (
-        <div className={'chat'}>
-            <div className={'chat-info'}>
-                <span className={'chat-name'}>{room.roomname}</span>
+        <div className="chat">
+            <div className="chat-info">
+                <span className="chat-name">{room.roomname}</span>
             </div>
             <Messages messages={messages} connection={connection}/>
             <ChatInput/>
