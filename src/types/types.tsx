@@ -17,6 +17,7 @@ export interface IUser {
     username: string;
     connectionId: string;
     roomId: string;
+    roomName: string;
 }
 
 export interface IRoom{
