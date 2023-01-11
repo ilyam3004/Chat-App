@@ -2,10 +2,10 @@ import React, {FC, FormEvent, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {IJoinRoomRequest} from "../types/types";
 import {LobbyInput} from "../components/LobbyInput";
-import '../App.css';
+import '../App.scss';
 
 interface LobbyProps {
-    joinRoom: (username: string, roomname: string) => void;
+    joinRoom: (request: IJoinRoomRequest) => void;
 }
 
 export const Lobby: FC<LobbyProps> = ({joinRoom}) =>{

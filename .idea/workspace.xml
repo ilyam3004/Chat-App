@@ -5,21 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="28be4fb5-b236-42b6-9895-14010dc5e2fd" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/LobbyInput.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/Lobby.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Chat.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/ChatInput.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Message.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Messages.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Navbar.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Sidebar.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/User.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/UserList.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/Room.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Card.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/List.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/TodoItem.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/UserItem.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/UserList.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/handlers/EventsExample.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/events/EventsExample.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/TodosPage.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/UserPage.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/LobbyInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LobbyInput.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/events/EventsExample.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/events/EventsExample.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Lobby.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Lobby.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/types/types.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/types.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -38,6 +40,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/node_modules/typescript/lib/lib.es2020.date.d.ts" root0="SKIP_INSPECTION" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -46,23 +51,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.keymap",
-    "ts.external.directory.path": "D:\\Learning\\Projects\\chat-app\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;D:\\Learning\\Projects\\chat-app\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="es6.move.members.recent.items">
+      <recent name="D:\Learning\Projects\chat-app\src\components\User.tsx" />
       <recent name="D:\Learning\Projects\chat-app\src\components\LobbyInput.tsx" />
       <recent name="D:\Learning\Projects\chat-app\src\pages\Lobby.tsx" />
     </key>
@@ -76,7 +82,9 @@
       <option name="presentableId" value="Default" />
       <updated>1673280705773</updated>
       <workItem from="1673280709035" duration="15566000" />
-      <workItem from="1673367247266" duration="14594000" />
+      <workItem from="1673367247266" duration="15191000" />
+      <workItem from="1673438274950" duration="13896000" />
+      <workItem from="1673466078515" duration="3438000" />
     </task>
     <servers />
   </component>
