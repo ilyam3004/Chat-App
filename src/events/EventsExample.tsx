@@ -1,6 +1,6 @@
 import React, {FC, useRef, useState} from 'react';
 
-const EventsExample: FC = () => {
+export const EventsExample: FC = () => {
     const [value, setValue] = useState<string>('');
     const inputRef = useRef<HTMLInputElement>(null);
 
@@ -15,5 +15,3 @@ const EventsExample: FC = () => {
         </div>
     );
 };
-
-export default EventsExample;
