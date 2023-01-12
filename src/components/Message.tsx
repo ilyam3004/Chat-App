@@ -22,7 +22,7 @@ export const Message: FC<MessageProps> = ({message, connection}) => {
                             <p>{message.text}</p>
                         </div>
                         <div className="message-date">
-                            {message.date.toLocaleString()}
+                            {message.date.toString()}
                         </div>
                     </div>)
                     :
