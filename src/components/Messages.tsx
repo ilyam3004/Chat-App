@@ -24,7 +24,7 @@ export const Messages: FC<MessagesProps> = ({messages, connection}) => {
         <div ref={messageRef} className="messages">
             {
                 messages.map(message =>
-                    <Message message={message} connection={connection}/>)
+                    <Message key={message.messageId} message={message} connection={connection}/>)
             }
         </div>
     );

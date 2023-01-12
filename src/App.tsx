@@ -17,16 +17,18 @@ function App() {
     const joinRoom = async (request: IJoinRoomRequest) => {
         try {
             const connection = new HubConnectionBuilder()
-                .withUrl("http://localhost:5213/chathub")
+                .withUrl("http://localhost:5113/chathub")
                 .configureLogging(LogLevel.Information)
                 .build();
 
             connection.on("ReceiveMessage", (message: IMessage) => {
+                console.log(message);
                 setMessages(messages => [...messages, message])
             });
 
             connection.on("ReceiveUserData", (user: IUser) => {
                 setRoom({ roomId: user.roomId, roomname: user.roomName});
+                console.log(room);
                 navigate(`./room/${user.roomId}`)
             });
 
@@ -36,7 +38,6 @@ function App() {
 
             await connection.start();
             await connection.invoke("JoinRoom", request);
-
             setServerConnection(connection);
         } catch (e) {
             console.log(e);
