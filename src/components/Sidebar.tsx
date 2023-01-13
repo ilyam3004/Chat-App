@@ -11,7 +11,7 @@ interface SidebarProps {
 
 export const Sidebar: FC<SidebarProps> = ({users, closeConnection}) => {
     return (
-        <div className={'sidebar'}>
+        <div className="sidebar">
             <Navbar closeConnection={closeConnection}/>
             <UserList users={users}/>
         </div>

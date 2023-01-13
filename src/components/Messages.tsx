@@ -9,7 +9,7 @@ interface MessagesProps {
     connection: HubConnection;
 }
 
-export const Messages: FC<MessagesProps> = ({messages, connection}) => {
+export const Messages: FC<MessagesProps> = ({messages , connection}) => {
 
     const messageRef = useRef<HTMLDivElement>(null);
 

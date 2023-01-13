@@ -14,7 +14,7 @@ export const Message: FC<MessageProps> = ({message, connection}) => {
             {
                 message.connectionId === connection.connectionId
                     ?
-                    (<div className="message owner">
+                    <div className="message owner">
                         <div className="message-info">
                             <span>{message.username}</span>
                         </div>
@@ -22,9 +22,9 @@ export const Message: FC<MessageProps> = ({message, connection}) => {
                             <p>{message.text}</p>
                         </div>
                         <div className="message-date">
-                            {message.date.toString()}
+                            {message.date.toLocaleDateString()}
                         </div>
-                    </div>)
+                    </div>
                     :
                     (<div className={'message'}>
                         <div className={'message-info'}>

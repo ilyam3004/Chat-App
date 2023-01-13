@@ -11,7 +11,7 @@ interface ChatProps{
     room: IRoom;
 }
 
-export const Chat: FC<ChatProps> = ({messages, connection, room}) => {
+export const Chat: FC<ChatProps> = ({messages, room, connection}) => {
     return (
         <div className="chat">
             <div className="chat-info">

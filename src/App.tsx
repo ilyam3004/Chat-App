@@ -10,7 +10,7 @@ function App() {
     const [serverConnection, setServerConnection] = useState<HubConnection | null>(null);
     const [users, setUsers] = useState<IUser[]>([]);
     const [messages, setMessages] = useState<IMessage[]>([]);
-    const [room, setRoom] = useState<IRoom | null>(null);
+    const [room, setRoom] = useState<IRoom>({roomId: 'roomId', roomname: 'roomname'});
 
     const navigate = useNavigate();
 
@@ -27,13 +27,17 @@ function App() {
             });
 
             connection.on("ReceiveUserData", (user: IUser) => {
-                setRoom({ roomId: user.roomId, roomname: user.roomName});
+                setRoom({roomId: user.roomId, roomname: user.roomName});
                 console.log(room);
                 navigate(`./room/${user.roomId}`)
             });
 
             connection.on("ReceiveRoomUsers", (users: IUser[]) => {
                 setUsers(users);
+            });
+
+            connection.on("ReceiveError", (error: any) => {
+                console.log(error);
             });
 
             await connection.start();
@@ -72,7 +76,7 @@ function App() {
                                                    connection={serverConnection}
                                                    closeConnection={closeConnection}
                                                    room={room}/>}/>
-        </Routes>);
+        </Routes>
+    );
 }
-
 export default App;
