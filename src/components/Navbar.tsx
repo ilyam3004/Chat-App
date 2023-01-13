@@ -15,11 +15,11 @@ export const Navbar: FC<NavbarProps> = ({closeConnection}) => {
         navigate('../');
     }
     return (
-        <div className={'navbar'}>
-            <span className={'logo'}>Chat app</span>
-            <div className={'user'}>
+        <div className="navbar">
+            <span className="logo">Chat app</span>
+            <div className="user">
                 <span>John</span>
-                <button className={'log-out-button'}
+                <button className="log-out-button"
                         onClick={logOut}>Logout
                 </button>
             </div>

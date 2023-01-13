@@ -6,7 +6,7 @@ import {HubConnection} from "@microsoft/signalr";
 import "../App.scss";
 
 interface RoomProps {
-    room: IRoom | null
+    room: IRoom
     users: IUser[]
     messages: IMessage[]
     connection: HubConnection | null;
@@ -15,20 +15,19 @@ interface RoomProps {
 
 export const Room: FC<RoomProps> = ({room, users, messages, connection, closeConnection}) => {
     return (
-        <div className={'room'}>
-            <div className={'room-container'}>
-                {connection && room
+        <div className="room">
+            {
+                connection && room
                     ?
-                    (<div>
+                    <div className="room-container">
                         <Sidebar users={users} closeConnection={closeConnection}/>
-                        <Chat connection={connection} messages={messages} room={room}/>
-                    </div>)
+                        <Chat messages={messages} room={room} connection={connection}/>
+                    </div>
                     :
                     (<div>
                         Server error occurred. Connection wasn't opened.
                     </div>)
-                }
-            </div>
+            }
         </div>
     );
 };
