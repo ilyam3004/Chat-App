@@ -1,14 +1,27 @@
-import React, {FormEvent, useRef, useState} from 'react';
+import React, {FormEvent, useRef, FC} from 'react';
 import "../App.scss";
+import {HubConnection} from "@microsoft/signalr";
 
-export const ChatInput = () => {
+interface ChatInputProps{
+    connection: HubConnection;
+}
+
+export const ChatInput: FC<ChatInputProps> = ({connection}) => {
 
     const messageRef = useRef<HTMLInputElement>(null);
 
-    const send = (e: FormEvent<HTMLFormElement>) => {
+    const send = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if(messageRef.current?.value){
-            //sendMessage(messageRef.current.value);
+            await sendMessage(messageRef.current.value);
+        }
+    }
+
+    const sendMessage = async (message: string) => {
+        try {
+            await connection.invoke("SendMessage", message);
+        } catch (e) {
+            console.log(e);
         }
     }
 
@@ -20,7 +33,7 @@ export const ChatInput = () => {
                 ref={messageRef}
                 placeholder="Type message..."/>
             <div className="send">
-                <button type="submit" disabled={!messageRef.current?.value}>Send</button>
+                <button type="submit">Send</button>
             </div>
         </form>
     );
