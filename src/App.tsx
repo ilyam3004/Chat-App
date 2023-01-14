@@ -1,16 +1,17 @@
 import React, {useState} from 'react';
 import {Routes, Route, useNavigate} from "react-router-dom";
 import {HubConnection, HubConnectionBuilder, LogLevel} from "@microsoft/signalr";
-import {IJoinRoomRequest, IUser, IMessage, IRoom} from "./types/types";
+import {IJoinRoomRequest, IUser, IMessage, IRoom, IError} from "./types/types";
 import {Lobby} from "./pages/Lobby";
 import {Room} from "./pages/Room";
 
 function App() {
 
     const [serverConnection, setServerConnection] = useState<HubConnection | null>(null);
-    const [users, setUsers] = useState<IUser[]>([]);
+    const [roomUsers, setRoomUsers] = useState<IUser[]>([]);
     const [messages, setMessages] = useState<IMessage[]>([]);
-    const [room, setRoom] = useState<IRoom>({roomId: 'roomId', roomname: 'roomname'});
+    const [userData, setUserData] = useState<IUser | null>(null);
+    const [error, setError] = useState<IError | null>(null);
 
     const navigate = useNavigate();
 
@@ -27,17 +28,24 @@ function App() {
             });
 
             connection.on("ReceiveUserData", (user: IUser) => {
-                setRoom({roomId: user.roomId, roomname: user.roomName});
-                console.log(room);
-                navigate(`./room/${user.roomId}`)
+                setUserData(user);
+                console.log(userData);
+                navigate(`./room/${user.roomId}`);
             });
 
-            connection.on("ReceiveRoomUsers", (users: IUser[]) => {
-                setUsers(users);
-            });
-
-            connection.on("ReceiveError", (error: any) => {
+            connection.on("ReceiveError", (error: IError) => {
+                setError(error);
                 console.log(error);
+            });
+
+            connection.on("ReceiveUserList", (users: IUser[]) => {
+                setRoomUsers(users);
+                console.log(roomUsers);
+            });
+
+            connection.on("ReceiveRoomMessages", (messages: IMessage[]) => {
+                setMessages(messages);
+                console.log(messages);
             });
 
             await connection.start();
@@ -71,11 +79,11 @@ function App() {
     return (
         <Routes>
             <Route path="/lobby" element={<Lobby joinRoom={joinRoom}/>}/>
-            <Route path="/room/:id" element={<Room users={users}
+            <Route path="/room/:id" element={<Room userList={roomUsers}
                                                    messages={messages}
                                                    connection={serverConnection}
                                                    closeConnection={closeConnection}
-                                                   room={room}/>}/>
+                                                   userData={userData}/>}/>
         </Routes>
     );
 }

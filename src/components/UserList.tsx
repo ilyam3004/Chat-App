@@ -11,7 +11,7 @@ export const UserList: FC<UserListProps> = ({users}) => {
     return (
         <div className="users">
             {
-                users.map(user => <User user={user}/>)
+                users.map(user => <User key={user.userId} user={user}/>)
             }
         </div>
     );

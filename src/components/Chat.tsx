@@ -2,23 +2,23 @@ import React, {FC} from 'react';
 import {Messages} from "./Messages";
 import {ChatInput} from "./ChatInput";
 import {HubConnection} from "@microsoft/signalr";
-import {IMessage, IRoom} from "../types/types";
+import {IMessage, IUser} from "../types/types";
 import "../App.scss";
 
 interface ChatProps{
     connection: HubConnection;
     messages: IMessage[];
-    room: IRoom;
+    userData: IUser;
 }
 
-export const Chat: FC<ChatProps> = ({messages, room, connection}) => {
+export const Chat: FC<ChatProps> = ({messages, userData, connection}) => {
     return (
         <div className="chat">
             <div className="chat-info">
-                <span className="chat-name">{room.roomname}</span>
+                <span className="chat-name">{userData.roomName}</span>
             </div>
             <Messages messages={messages} connection={connection}/>
-            <ChatInput/>
+            <ChatInput connection={connection}/>
         </div>
     );
 };

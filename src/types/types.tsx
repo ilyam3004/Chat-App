@@ -24,3 +24,13 @@ export interface IRoom{
     roomId: string;
     roomname: string;
 }
+
+export interface IValidationError{
+
+}
+
+export interface IError{
+    status: number;
+    title: string;
+    type: string;
+}
