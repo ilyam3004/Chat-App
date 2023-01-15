@@ -1,15 +1,16 @@
 export interface IJoinRoomRequest {
     username: string;
-    roomname: string;
+    roomName: string;
 }
 
 export interface IMessage {
     messageId: string;
     username: string;
     roomId: string;
-    connectionId: string;
+    userId: string;
     text: string;
     date: Date;
+    fromUser: boolean;
 }
 
 export interface IUser {
@@ -18,11 +19,6 @@ export interface IUser {
     connectionId: string;
     roomId: string;
     roomName: string;
-}
-
-export interface IRoom{
-    roomId: string;
-    roomname: string;
 }
 
 export interface IValidationError{

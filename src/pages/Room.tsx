@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import {Chat} from "../components/Chat";
 import {Sidebar} from "../components/Sidebar";
-import {IMessage, IUser, IRoom} from "../types/types";
+import {IMessage, IUser} from "../types/types";
 import {HubConnection} from "@microsoft/signalr";
 import "../App.scss";
 

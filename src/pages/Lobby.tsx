@@ -9,7 +9,7 @@ interface LobbyProps {
 }
 
 export const Lobby: FC<LobbyProps> = ({joinRoom}) =>{
-    const [values, setValues] = useState<IJoinRoomRequest>({username: '', roomname: ''});
+    const [values, setValues] = useState<IJoinRoomRequest>({username: '', roomName: ''});
     let navigate = useNavigate();
 
     const inputs = [
@@ -25,7 +25,7 @@ export const Lobby: FC<LobbyProps> = ({joinRoom}) =>{
         },
         {
             id: 2,
-            name: "roomname",
+            name: "roomName",
             type: "text",
             placeholder: "Room",
             errorMessage: "Username less then 10 characters and shouldn't include any special character!",
@@ -37,7 +37,7 @@ export const Lobby: FC<LobbyProps> = ({joinRoom}) =>{
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        if (values.username && values.roomname){
+        if (values.username && values.roomName){
             joinRoom(values);
         }
     }

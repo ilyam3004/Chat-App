@@ -1,15 +1,14 @@
 import React, {FC, useEffect, useRef} from 'react';
 import {Message} from "./Message";
-import {IMessage} from "../types/types";
-import {HubConnection} from "@microsoft/signalr";
+import {IMessage, IUser} from "../types/types";
 import "../App.scss";
 
 interface MessagesProps {
     messages: IMessage[];
-    connection: HubConnection;
+    user: IUser;
 }
 
-export const Messages: FC<MessagesProps> = ({messages , connection}) => {
+export const Messages: FC<MessagesProps> = ({messages, user}) => {
 
     const messageRef = useRef<HTMLDivElement>(null);
 
@@ -24,7 +23,7 @@ export const Messages: FC<MessagesProps> = ({messages , connection}) => {
         <div ref={messageRef} className="messages">
             {
                 messages.map(message =>
-                    <Message key={message.messageId} message={message} connection={connection}/>)
+                    <Message key={message.messageId} message={message} user={user}/>)
             }
         </div>
     );

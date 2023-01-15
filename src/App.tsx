@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Routes, Route, useNavigate} from "react-router-dom";
 import {HubConnection, HubConnectionBuilder, LogLevel} from "@microsoft/signalr";
-import {IJoinRoomRequest, IUser, IMessage, IRoom, IError} from "./types/types";
+import {IJoinRoomRequest, IUser, IMessage, IError} from "./types/types";
 import {Lobby} from "./pages/Lobby";
 import {Room} from "./pages/Room";
 
@@ -44,7 +44,8 @@ function App() {
             });
 
             connection.on("ReceiveRoomMessages", (messages: IMessage[]) => {
-                setMessages(messages);
+                setMessages(messages.sort((a, b) =>
+                    (a.date < b.date) ? -1 : 1));
                 console.log(messages);
             });
 
@@ -55,16 +56,6 @@ function App() {
             console.log(e);
         }
     }
-
-    const sendMessage = async (message: IMessage) => {
-        try {
-            if (serverConnection) {
-                await serverConnection.invoke("SendMessageToRoom", message);
-            }
-        } catch (e) {
-            console.log(e);
-        }
-    };
 
     const closeConnection = async () => {
         try {

@@ -12,14 +12,15 @@ export const ChatInput: FC<ChatInputProps> = ({connection}) => {
 
     const send = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        if(messageRef.current?.value){
+        if(messageRef.current !== null){
             await sendMessage(messageRef.current.value);
+            messageRef.current.value = '';
         }
     }
 
     const sendMessage = async (message: string) => {
         try {
-            await connection.invoke("SendMessage", message);
+            await connection.invoke("SendUserMessage", message);
         } catch (e) {
             console.log(e);
         }
