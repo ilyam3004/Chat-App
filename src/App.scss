@@ -246,6 +246,18 @@ body{
               }
             }
           }
+          &.from-server{
+            justify-content: center;
+
+            .message-content {
+              p {
+                background-color: rgb(157, 182, 199);
+                color: #ffffff;
+                border-radius: 20px;
+                max-width: max-content;
+              }
+            }
+          }
         }
       }
 
