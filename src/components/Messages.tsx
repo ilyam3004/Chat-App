@@ -1,6 +1,7 @@
 import React, {FC, useEffect, useRef} from 'react';
 import {Message} from "./Message";
 import {IMessage, IUser} from "../types/types";
+import moment from "moment";
 import "../App.scss";
 
 interface MessagesProps {
@@ -11,6 +12,16 @@ interface MessagesProps {
 export const Messages: FC<MessagesProps> = ({messages, user}) => {
 
     const messageRef = useRef<HTMLDivElement>(null);
+
+    // function showDate(): boolean {
+    //     if(messages.length > 1) {
+    //         console.log(moment(messages[messages.length - 1].date)
+    //             .diff(messages[messages.length - 2].date, "minutes"));
+    //         return moment(messages[messages.length - 1].date)
+    //             .diff(messages[messages.length - 2].date, "minutes") < 1;
+    //     }
+    //     return true;
+    // }
 
     useEffect(() => {
         if (messageRef && messageRef.current) {

@@ -5,15 +5,16 @@ import {Navbar} from "./Navbar";
 import "../App.scss";
 
 interface SidebarProps {
-    users: IUser[];
+    userData: IUser;
+    userList: IUser[];
     closeConnection: () => void;
 }
 
-export const Sidebar: FC<SidebarProps> = ({users, closeConnection}) => {
+export const Sidebar: FC<SidebarProps> = ({userList, closeConnection, userData}) => {
     return (
         <div className="sidebar">
-            <Navbar closeConnection={closeConnection}/>
-            <UserList users={users}/>
+            <Navbar closeConnection={closeConnection} userData={userData}/>
+            <UserList users={userList}/>
         </div>
     );
 };
