@@ -20,7 +20,7 @@ export const Room: FC<RoomProps> = ({userData, userList, messages, connection, c
                 connection && userData
                     ?
                     (<div className="room-container">
-                        <Sidebar users={userList} closeConnection={closeConnection}/>
+                        <Sidebar userData={userData} userList={userList} closeConnection={closeConnection}/>
                         <Chat messages={messages} userData={userData} connection={connection}/>
                     </div>)
                     :

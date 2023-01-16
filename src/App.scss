@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap');
 
-body{
+body {
   margin: 0;
   padding: 0;
 }
@@ -195,11 +195,17 @@ body{
       .messages {
         background-color: #ddddf7;
         padding: 10px;
-        height: calc(100% - 160px);
+        height: calc(100% - 155px);
         overflow: scroll;
 
         &::-webkit-scrollbar {
           display: none;
+        }
+
+        .message-date{
+          display: flex;
+          justify-content: center;
+          color: #92929c;
         }
 
         .message {
@@ -246,7 +252,8 @@ body{
               }
             }
           }
-          &.from-server{
+
+          &.from-server {
             justify-content: center;
 
             .message-content {
@@ -262,7 +269,7 @@ body{
       }
 
       .chat-input {
-        height: 50px;
+        height: 45px;
         background-color: white;
         padding: 10px;
         display: flex;
