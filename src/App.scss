@@ -202,7 +202,7 @@ body {
           display: none;
         }
 
-        .message-date{
+        .message-date {
           display: flex;
           justify-content: center;
           color: #92929c;
@@ -212,29 +212,48 @@ body {
           display: flex;
           gap: 20px;
           margin-bottom: 20px;
-
-          .message-info {
-            display: flex;
-            align-items: center;
+          .message-info-container {
             color: gray;
             font-weight: 300;
-
-            span {
-              padding: 20px 16px;
-              border-radius: 50%;
-              border: 2px solid white;
+            display: flex;
+            align-items: end;
+            .message-info {
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              img {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+              }
+              span{
+                font-size: 13px;
+              }
             }
           }
 
           .message-content {
-            max-width: 80%;
+            max-width: 30%;
             display: flex;
-            flex-direction: column;
+            background-color: white;
+            border-radius: 15px 15px 15px 0px;
+            align-items: center;
 
-            p {
-              background-color: white;
-              padding: 10px;
-              border-radius: 15px 15px 15px 0px;
+            .message-text {
+              max-width: 95%;
+              color: black;
+              vertical-align: middle;
+              word-wrap: break-word;
+              padding: 10px 10px 10px 10px;
+              hyphens: auto;
+
+              .message-time {
+                display: flex;
+                justify-content: end;
+                color: #a9a7a7;
+                font-size: 10px;
+                padding-top: 5px;
+              }
             }
           }
 
@@ -242,28 +261,28 @@ body {
             flex-direction: row-reverse;
 
             .message-content {
-              align-items: flex-end;
+              border-radius: 15px 15px 0px 15px;
+              background-color: #8da4f1;
 
-              p {
-                background-color: #8da4f1;
+              .message-text {
                 color: white;
-                border-radius: 10px 0px 10px 10px;
-                max-width: max-content;
+
+                .message-time {
+                  color: rgb(255, 255, 255);
+                }
               }
             }
           }
 
           &.from-server {
             justify-content: center;
-
-            .message-content {
-              p {
+              .message-text {
                 background-color: rgb(157, 182, 199);
                 color: #ffffff;
                 border-radius: 20px;
+                padding: 10px 20px 10px 20px;
                 max-width: max-content;
               }
-            }
           }
         }
       }
