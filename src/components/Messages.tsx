@@ -13,15 +13,15 @@ export const Messages: FC<MessagesProps> = ({messages, user}) => {
 
     const messageRef = useRef<HTMLDivElement>(null);
 
-    // function showDate(): boolean {
-    //     if(messages.length > 1) {
-    //         console.log(moment(messages[messages.length - 1].date)
-    //             .diff(messages[messages.length - 2].date, "minutes"));
-    //         return moment(messages[messages.length - 1].date)
-    //             .diff(messages[messages.length - 2].date, "minutes") < 1;
-    //     }
-    //     return true;
-    // }
+    function showDate(): boolean {
+        if (messages.length > 1) {
+            console.log(moment(messages[messages.length - 1].date)
+                .diff(messages[messages.length - 2].date, "minutes"));
+            return moment(messages[messages.length - 1].date)
+                .diff(messages[messages.length - 2].date, "minutes") > 0;
+        }
+        return true;
+    }
 
     useEffect(() => {
         if (messageRef && messageRef.current) {
@@ -34,7 +34,10 @@ export const Messages: FC<MessagesProps> = ({messages, user}) => {
         <div ref={messageRef} className="messages">
             {
                 messages.map(message =>
-                    <Message key={message.messageId} message={message} user={user}/>)
+                    <Message showDate={showDate}
+                             key={message.messageId}
+                             message={message}
+                             user={user}/>)
             }
         </div>
     );
