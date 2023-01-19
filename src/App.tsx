@@ -23,13 +23,11 @@ function App() {
                 .build();
 
             connection.on("ReceiveMessage", (message: IMessage) => {
-                console.log(message);
                 setMessages(messages => [...messages, message])
             });
 
             connection.on("ReceiveUserData", (user: IUser) => {
                 setUserData(user);
-                console.log(userData);
                 navigate(`./room/${user.roomId}`);
             });
 
@@ -40,13 +38,11 @@ function App() {
 
             connection.on("ReceiveUserList", (users: IUser[]) => {
                 setRoomUsers(users);
-                console.log(roomUsers);
             });
 
             connection.on("ReceiveRoomMessages", (messages: IMessage[]) => {
                 setMessages(messages.sort((a, b) =>
                     (a.date < b.date) ? -1 : 1));
-                console.log(messages);
             });
 
             await connection.start();

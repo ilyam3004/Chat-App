@@ -6,14 +6,6 @@ import "../App.scss";
 interface MessageProps {
     message: IMessage;
     user: IUser;
-    showDate: () => boolean;
-}
-
-function getFormattedDate(date: Date): string {
-    return moment
-        .utc(date)
-        .local()
-        .format("MMM d, yyyy");
 }
 
 function getFormattedTime(date: Date): string {
@@ -23,7 +15,7 @@ function getFormattedTime(date: Date): string {
         .format("hh:mm A");
 }
 
-export const Message: FC<MessageProps> = ({message, user, showDate}) => {
+export const Message: FC<MessageProps> = ({message, user}) => {
     return (
         <div className="message-container">
             {
