@@ -1,14 +1,21 @@
-import React, {FC} from 'react';
+import React, {FC, useEffect, useRef} from 'react';
 import {IMessage, IUser} from "../types/types";
 import {Message} from "./Message";
 
-interface DateMessagesProps{
+interface DateMessagesProps {
     date: string;
-    messageByDate: IMessage[],
+    messagesByDate: IMessage[],
     user: IUser
 }
 
-export const DateMessages: FC<DateMessagesProps> = ({messageByDate, user, date}) => {
+export const DateMessages: FC<DateMessagesProps> = ({messagesByDate, user, date}) => {
+    const messagesEndRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if (messagesEndRef && messagesEndRef.current) {
+            messagesEndRef.current.scrollIntoView({behavior: "smooth"});
+        }
+    }, [messagesByDate]);
 
     return (
         <div>
@@ -16,10 +23,11 @@ export const DateMessages: FC<DateMessagesProps> = ({messageByDate, user, date})
                 {date}
             </div>
             {
-                messageByDate.map(message => {
+                messagesByDate.map(message => {
                     return <Message key={message.messageId} message={message} user={user}/>
                 })
             }
+            <div ref={messagesEndRef}/>
         </div>
     );
 };

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Routes, Route, useNavigate} from "react-router-dom";
+import {Routes, Route, useNavigate, Navigate} from "react-router-dom";
 import {HubConnection, HubConnectionBuilder, LogLevel} from "@microsoft/signalr";
 import {IJoinRoomRequest, IUser, IMessage, IError} from "./types/types";
 import {Lobby} from "./pages/Lobby";
@@ -65,6 +65,7 @@ function App() {
 
     return (
         <Routes>
+            <Route path="/" element={<Navigate to="/lobby" />}/>
             <Route path="/lobby" element={<Lobby joinRoom={joinRoom}/>}/>
             <Route path="/room/:id" element={<Room userList={roomUsers}
                                                    messages={messages}
