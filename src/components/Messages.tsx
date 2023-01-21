@@ -10,9 +10,8 @@ interface MessagesProps {
 }
 
 export const Messages: FC<MessagesProps> = ({messages, user}) => {
-    const [messagesByDate, setMessagesByDate] = useState<Record<string, IMessage[]> | null>(null);
-    const messagesEndRef = useRef<HTMLDivElement| null>(null);
 
+    const [messagesByDate, setMessagesByDate] = useState<Record<string, IMessage[]> | null>(null);
 
     function groupMessagesByDate() {
         const result: Record<string, IMessage[]> = groupBy(messages,
@@ -36,9 +35,10 @@ export const Messages: FC<MessagesProps> = ({messages, user}) => {
     useEffect(() => {
         groupMessagesByDate();
     }, [messages]);
+    
 
     return (
-        <div ref={messagesEndRef} className="messages">
+        <div className="messages">
             {
                 messagesByDate
                 ?
