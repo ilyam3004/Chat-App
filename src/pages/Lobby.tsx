@@ -1,43 +1,21 @@
 import React, {FC, FormEvent, useState} from "react";
-import {useNavigate} from "react-router-dom";
 import {IJoinRoomRequest} from "../types/types";
-import {LobbyInput} from "../components/LobbyInput";
 import '../App.scss';
+import {MoonLoader} from "react-spinners";
 
 interface LobbyProps {
     joinRoom: (request: IJoinRoomRequest) => void;
 }
 
-export const Lobby: FC<LobbyProps> = ({joinRoom}) =>{
-    const [values, setValues] = useState<IJoinRoomRequest>({username: '', roomName: ''});
-    let navigate = useNavigate();
+export const Lobby: FC<LobbyProps> = ({joinRoom}) => {
 
-    const inputs = [
-        {
-            id: 1,
-            name: "username",
-            type: "text",
-            placeholder: "Username",
-            errorMessage: "Username less then 10 characters and shouldn't include any special character!",
-            label: "Username",
-            pattern: "^[A-za-z0-9]{1,10}",
-            required: true
-        },
-        {
-            id: 2,
-            name: "roomName",
-            type: "text",
-            placeholder: "Room",
-            errorMessage: "Username less then 10 characters and shouldn't include any special character!",
-            label: "Room",
-            pattern: "^[A-za-z0-9]{1,10}",
-            required: true
-        }
-    ]
+    const [loading, setLoading] = useState<boolean>(false);
+    const [values, setValues] = useState<IJoinRoomRequest>({username: '', roomName: ''});
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        if (values.username && values.roomName){
+        if (values.username && values.roomName) {
+            setLoading(true);
             joinRoom(values);
         }
     }
@@ -51,19 +29,30 @@ export const Lobby: FC<LobbyProps> = ({joinRoom}) =>{
             <form className="lobby-form"
                   onSubmit={handleSubmit}>
                 <h1 className="lobby-title">Chat app</h1>
-                {
-                    inputs.map((input) => (
-                        <LobbyInput key={input.id}
-                                    name={input.name}
-                                    type={input.type}
-                                    placeholder={input.placeholder}
-                                    errorMessage={input.errorMessage}
-                                    label={input.label}
-                                    pattern={input.pattern}
-                                    required={input.required}
-                                    onChange={onChange}/>
-                    ))
-                }
+                <div className="lobby-loader">
+                    <MoonLoader
+                        color="#000000"
+                        loading={loading}
+                        size={30}
+                        aria-label="Loading Spinner"
+                        data-testid="loader"/>
+                </div>
+                <div className="lobby-input-container">
+                    <label className="input-label">Username</label>
+                    <input className="lobby-input"
+                           name="username"
+                           type="text"
+                           placeholder="Username"
+                           required={true}
+                           onChange={onChange}/>
+                    <label className="input-label">Roomname</label>
+                    <input className="lobby-input"
+                           name="roomName"
+                           type="text"
+                           placeholder="Roomname"
+                           required={true}
+                           onChange={onChange}/>
+                </div>
                 <button className="lobby-button" type="submit">
                     Join
                 </button>
