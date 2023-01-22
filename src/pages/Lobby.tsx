@@ -1,21 +1,21 @@
 import React, {FC, FormEvent, useState} from "react";
-import {IJoinRoomRequest} from "../types/types";
+import {IError, IJoinRoomRequest} from "../types/types";
 import '../App.scss';
 import {MoonLoader} from "react-spinners";
 
 interface LobbyProps {
     joinRoom: (request: IJoinRoomRequest) => void;
+    error: IError | null;
 }
 
-export const Lobby: FC<LobbyProps> = ({joinRoom}) => {
+export const Lobby: FC<LobbyProps> = ({joinRoom, error}) => {
 
-    const [loading, setLoading] = useState<boolean>(false);
+    const [loading, setLoading] = useState(false);
     const [values, setValues] = useState<IJoinRoomRequest>({username: '', roomName: ''});
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (values.username && values.roomName) {
-            setLoading(true);
             joinRoom(values);
         }
     }
@@ -24,15 +24,38 @@ export const Lobby: FC<LobbyProps> = ({joinRoom}) => {
         setValues({...values, [e.target.name]: e.target.value})
     }
 
+    const getError = (): string => {
+        if(error){
+            setLoading(false);
+            return error.errors.Username !== undefined
+                ? error.errors.Username[0]
+                : error.errors.RoomName[0];
+        }
+        return "";
+    }
+
     return (
         <div className="lobby">
             <form className="lobby-form"
                   onSubmit={handleSubmit}>
                 <h1 className="lobby-title">Chat app</h1>
+                {
+                    error
+                        ?
+                        (
+                            <div className="error-container">
+                                <div className="error-text">
+                                    {getError()}
+                                </div>
+                            </div>
+                        )
+                        :
+                        <div></div>
+                }
                 <div className="lobby-loader">
                     <MoonLoader
-                        color="#000000"
                         loading={loading}
+                        color="#000000"
                         size={30}
                         aria-label="Loading Spinner"
                         data-testid="loader"/>

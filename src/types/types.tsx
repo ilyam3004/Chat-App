@@ -20,13 +20,9 @@ export interface IUser {
     roomId: string;
     roomName: string;
 }
-
-export interface IValidationError{
-
-}
-
 export interface IError{
     status: number;
     title: string;
     type: string;
+    errors: Record<string, string[]>;
 }

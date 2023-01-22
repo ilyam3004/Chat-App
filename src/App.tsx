@@ -11,7 +11,7 @@ function App() {
     const [roomUsers, setRoomUsers] = useState<IUser[]>([]);
     const [messages, setMessages] = useState<IMessage[]>([]);
     const [userData, setUserData] = useState<IUser | null>(null);
-    const [error, setError] = useState<IError | null>(null);
+    const [error, setError] = useState<IError| null>(null);
 
     const navigate = useNavigate();
 
@@ -32,8 +32,8 @@ function App() {
             });
 
             connection.on("ReceiveError", (error: IError) => {
-                setError(error);
                 console.log(error);
+                setError(error);
             });
 
             connection.on("ReceiveUserList", (users: IUser[]) => {
@@ -65,8 +65,9 @@ function App() {
 
     return (
         <Routes>
-            <Route path="/" element={<Navigate to="/lobby" />}/>
-            <Route path="/lobby" element={<Lobby joinRoom={joinRoom}/>}/>
+            <Route path="/" element={<Navigate to="/lobby"/>}/>
+            <Route path="/lobby" element={<Lobby joinRoom={joinRoom}
+                                                 error={error}/>}/>
             <Route path="/room/:id" element={<Room userList={roomUsers}
                                                    messages={messages}
                                                    connection={serverConnection}
@@ -75,4 +76,5 @@ function App() {
         </Routes>
     );
 }
+
 export default App;
