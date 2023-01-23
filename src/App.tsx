@@ -67,7 +67,8 @@ function App() {
         <Routes>
             <Route path="/" element={<Navigate to="/lobby"/>}/>
             <Route path="/lobby" element={<Lobby joinRoom={joinRoom}
-                                                 error={error}/>}/>
+                                                 error={error}
+                                                 setError={setError}/>}/>
             <Route path="/room/:id" element={<Room userList={roomUsers}
                                                    messages={messages}
                                                    connection={serverConnection}

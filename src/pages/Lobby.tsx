@@ -1,4 +1,4 @@
-import React, {FC, FormEvent, useState} from "react";
+import React, {FC, FormEvent, useEffect, useState} from "react";
 import {IError, IJoinRoomRequest} from "../types/types";
 import '../App.scss';
 import {MoonLoader} from "react-spinners";
@@ -6,15 +6,19 @@ import {MoonLoader} from "react-spinners";
 interface LobbyProps {
     joinRoom: (request: IJoinRoomRequest) => void;
     error: IError | null;
+    setError: React.Dispatch<React.SetStateAction<IError | null>>;
 }
 
-export const Lobby: FC<LobbyProps> = ({joinRoom, error}) => {
+export const Lobby: FC<LobbyProps> = ({joinRoom, error, setError}) => {
 
     const [loading, setLoading] = useState(false);
+
     const [values, setValues] = useState<IJoinRoomRequest>({username: '', roomName: ''});
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        setError(null);
+        setLoading(true);
         if (values.username && values.roomName) {
             joinRoom(values);
         }
@@ -26,13 +30,19 @@ export const Lobby: FC<LobbyProps> = ({joinRoom, error}) => {
 
     const getError = (): string => {
         if(error){
-            setLoading(false);
             return error.errors.Username !== undefined
                 ? error.errors.Username[0]
                 : error.errors.RoomName[0];
         }
         return "";
     }
+
+    useEffect(() => {
+        if(error){
+            setLoading(false);
+        }
+    }, [error?.errors]);
+
 
     return (
         <div className="lobby">
