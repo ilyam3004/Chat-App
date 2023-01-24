@@ -1,9 +1,10 @@
-import React, {FC} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import {Chat} from "../components/Chat";
 import {Sidebar} from "../components/Sidebar";
 import {IMessage, IUser} from "../types/types";
 import {HubConnection} from "@microsoft/signalr";
 import "../App.scss";
+import {MoonLoader} from "react-spinners";
 
 interface RoomProps {
     userData: IUser | null
@@ -14,19 +15,44 @@ interface RoomProps {
 }
 
 export const Room: FC<RoomProps> = ({userData, userList, messages, connection, closeConnection}) => {
+
+    const [loading, setLoading] = useState<boolean>(true);
+
+    useEffect(() => {
+        if(connection) {
+            let timer: NodeJS.Timeout = setTimeout(() => setLoading(false), 2000);
+            return () => {
+                clearInterval(timer);
+            };
+        }
+    }, []);
+
     return (
         <div className="room">
             {
-                connection && userData
+                loading
                     ?
-                    (<div className="room-container">
-                        <Sidebar userData={userData} userList={userList} closeConnection={closeConnection}/>
-                        <Chat messages={messages} userData={userData} connection={connection}/>
-                    </div>)
+                    <div>
+                        <MoonLoader
+                            loading={loading}
+                            color="#000000"
+                            size={30}
+                            aria-label="Loading Spinner"
+                            data-testid="loader"/>
+                    </div>
                     :
-                    (<div>
-                        Server error occurred. Connection wasn't opened.
-                    </div>)
+                    (
+                        connection && userData
+                            ?
+                            (<div className="room-container">
+                                <Sidebar userData={userData} userList={userList} closeConnection={closeConnection}/>
+                                <Chat messages={messages} userData={userData} connection={connection}/>
+                            </div>)
+                            :
+                            (<div>
+                                Server error occurred. Connection wasn't opened.
+                            </div>)
+                    )
             }
         </div>
     );
