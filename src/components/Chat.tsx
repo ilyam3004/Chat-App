@@ -17,7 +17,8 @@ export const Chat: FC<ChatProps> = ({messages, userData, connection}) => {
             <div className="chat-info">
                 <span className="chat-name">{userData.roomName}</span>
             </div>
-            <Messages messages={messages} user={userData}/>
+            <Messages messages={messages}
+                      user={userData}/>
             <ChatInput connection={connection}/>
         </div>
     );

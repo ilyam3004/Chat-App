@@ -1,7 +1,7 @@
 import React, {FC, FormEvent, useEffect, useState} from "react";
 import {IError, IJoinRoomRequest} from "../types/types";
 import {MoonLoader} from "react-spinners";
-import '../App.scss'
+import '../App.scss';
 
 interface LobbyProps {
     joinRoom: (request: IJoinRoomRequest) => void;
@@ -11,9 +11,9 @@ interface LobbyProps {
 
 export const Lobby: FC<LobbyProps> = ({joinRoom, error, setError}) => {
 
+    const [values, setValues] = useState<IJoinRoomRequest>({username: '', roomName: ''});
     const [loading, setLoading] = useState(false);
     const delayInSeconds: number = 2;
-    const [values, setValues] = useState<IJoinRoomRequest>({username: '', roomName: ''});
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -30,7 +30,7 @@ export const Lobby: FC<LobbyProps> = ({joinRoom, error, setError}) => {
 
     const getError = (): string => {
         if (error) {
-            if (error.errors != undefined) {
+            if (error.errors !== undefined) {
                 return error.errors.Username !== undefined
                     ? error.errors.Username[0]
                     : error.errors.RoomName[0];

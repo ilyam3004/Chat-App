@@ -3,8 +3,10 @@ import {Chat} from "../components/Chat";
 import {Sidebar} from "../components/Sidebar";
 import {IMessage, IUser} from "../types/types";
 import {HubConnection} from "@microsoft/signalr";
-import "../App.scss";
 import {MoonLoader} from "react-spinners";
+import {toast, ToastContainer} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+import "../App.scss";
 
 interface RoomProps {
     userData: IUser | null
@@ -14,14 +16,18 @@ interface RoomProps {
     closeConnection: () => void;
 }
 
+
 export const Room: FC<RoomProps> = ({userData, userList, messages, connection, closeConnection}) => {
 
     const [loading, setLoading] = useState<boolean>(true);
 
+    const joinRoomNotify = () => toast.success(`You have successfully joined the room: "${userData?.roomName}"`);
+
     useEffect(() => {
-        if(connection) {
+        if (connection) {
             let timer: NodeJS.Timeout = setTimeout(() => setLoading(false), 2000);
             return () => {
+                joinRoomNotify();
                 clearInterval(timer);
             };
         }
@@ -39,14 +45,29 @@ export const Room: FC<RoomProps> = ({userData, userList, messages, connection, c
                             size={30}
                             aria-label="Loading Spinner"
                             data-testid="loader"/>
+                        <ToastContainer
+                            position="top-center"
+                            autoClose={2000}
+                            hideProgressBar={false}
+                            newestOnTop={false}
+                            closeOnClick
+                            rtl={false}
+                            pauseOnFocusLoss
+                            draggable
+                            pauseOnHover
+                            theme="colored"/>
                     </div>
                     :
                     (
                         connection && userData
                             ?
                             (<div className="room-container">
-                                <Sidebar userData={userData} userList={userList} closeConnection={closeConnection}/>
-                                <Chat messages={messages} userData={userData} connection={connection}/>
+                                <Sidebar userData={userData}
+                                         userList={userList}
+                                         closeConnection={closeConnection}/>
+                                <Chat messages={messages}
+                                      userData={userData}
+                                      connection={connection}/>
                             </div>)
                             :
                             (<div>
