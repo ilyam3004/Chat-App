@@ -42,7 +42,7 @@ export const ChatInput: FC<ChatInputProps> = ({connection}) => {
                 placeholder="Type message..."
                 onChange={onChange}/>
             <div className="counter" style={{ color: count > 150 ? "#f17c7c" : "#a9a7a7" }}>
-                {count}
+                {count}/150
             </div>
             <div className="send">
                 <button type="submit" disabled={count > 150}>Send</button>

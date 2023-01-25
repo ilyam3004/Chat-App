@@ -1,8 +1,8 @@
-import React, {FC, useEffect, useRef, useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import {IMessage, IUser} from "../types/types";
+import {DateMessages} from "./DateMessages";
 import moment from "moment";
 import "../App.scss";
-import {DateMessages} from "./DateMessages";
 
 interface MessagesProps {
     messages: IMessage[];
@@ -44,7 +44,6 @@ export const Messages: FC<MessagesProps> = ({messages, user}) => {
                 ?
                     Object.keys(messagesByDate).map((date:string) => {
                         return <DateMessages key={date} date={date} messagesByDate={messagesByDate[date]} user={user}/>})
-
                 :
                     <div></div>
             }
