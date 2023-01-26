@@ -21,16 +21,11 @@ export const Room: FC<RoomProps> = ({userData, userList, messages, connection, c
 
     const [loading, setLoading] = useState<boolean>(true);
 
-    const joinRoomNotify = () => toast.success(`You have successfully joined the room: "${userData?.roomName}"`);
-
     useEffect(() => {
-        if (connection) {
             let timer: NodeJS.Timeout = setTimeout(() => setLoading(false), 2000);
             return () => {
-                joinRoomNotify();
                 clearInterval(timer);
             };
-        }
     }, []);
 
     return (
@@ -45,17 +40,6 @@ export const Room: FC<RoomProps> = ({userData, userList, messages, connection, c
                             size={30}
                             aria-label="Loading Spinner"
                             data-testid="loader"/>
-                        <ToastContainer
-                            position="top-center"
-                            autoClose={2000}
-                            hideProgressBar={false}
-                            newestOnTop={false}
-                            closeOnClick
-                            rtl={false}
-                            pauseOnFocusLoss
-                            draggable
-                            pauseOnHover
-                            theme="colored"/>
                     </div>
                     :
                     (
@@ -67,7 +51,8 @@ export const Room: FC<RoomProps> = ({userData, userList, messages, connection, c
                                          closeConnection={closeConnection}/>
                                 <Chat messages={messages}
                                       userData={userData}
-                                      connection={connection}/>
+                                      connection={connection}
+                                      membersCount={userList.length}/>
                             </div>)
                             :
                             (<div>

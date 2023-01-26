@@ -14,7 +14,7 @@ export const ChatInput: FC<ChatInputProps> = ({connection}) => {
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setCount(0);
-        if(messageRef.current !== null){
+        if(messageRef.current){
             await sendMessage(messageRef.current.value);
             messageRef.current.value = '';
         }
@@ -45,7 +45,7 @@ export const ChatInput: FC<ChatInputProps> = ({connection}) => {
                 {count}/150
             </div>
             <div className="send">
-                <button type="submit" disabled={count > 150}>Send</button>
+                <button type="submit" disabled={count > 150 || !messageRef.current?.value}>Send</button>
             </div>
         </form>
     );
