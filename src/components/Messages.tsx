@@ -14,8 +14,7 @@ export const Messages: FC<MessagesProps> = ({messages, user}) => {
     const [messagesByDate, setMessagesByDate] = useState<Record<string, IMessage[]> | null>(null);
 
     function groupMessagesByDate() {
-        const result: Record<string, IMessage[]> = groupBy(messages,
-                m => getDateInFormat(m.date));
+        const result: Record<string, IMessage[]> = groupBy(messages, m => getDateInFormat(m.date));
         setMessagesByDate(result);
     }
 
@@ -26,10 +25,11 @@ export const Messages: FC<MessagesProps> = ({messages, user}) => {
         }, {} as Record<K, T[]>);
 
     const getDateInFormat = (date: Date):string => {
-        return moment
-            .utc(date)
+        console.log(date);
+        return moment(date)
+            .utc()
             .local()
-            .format("MMM d, yyyy");
+            .format("MMM D, yyyy");
     }
 
     useEffect(() => {
@@ -43,7 +43,9 @@ export const Messages: FC<MessagesProps> = ({messages, user}) => {
                 messagesByDate
                 ?
                     Object.keys(messagesByDate).map((date:string) => {
-                        return <DateMessages key={date} date={date} messagesByDate={messagesByDate[date]} user={user}/>})
+                        return <DateMessages key={date} date={date}
+                                             messagesByDate={messagesByDate[date]}
+                                             user={user}/>})
                 :
                     <div></div>
             }
