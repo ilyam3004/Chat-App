@@ -31,7 +31,6 @@ export const Message: FC<MessageProps> = ({message, user}) => {
                                             <img
                                                 src="https://media.istockphoto.com/id/1131164548/vector/avatar-5.jpg?s=612x612&w=0&k=20&c=CK49ShLJwDxE4kiroCR42kimTuuhvuo2FH5y_6aSgEo="
                                                 alt=""/>
-                                            <span>{message.username}</span>
                                         </div>
                                     </div>
                                     <div className="message-content">
@@ -52,11 +51,11 @@ export const Message: FC<MessageProps> = ({message, user}) => {
                                             <img
                                                 src="https://media.istockphoto.com/id/1131164548/vector/avatar-5.jpg?s=612x612&w=0&k=20&c=CK49ShLJwDxE4kiroCR42kimTuuhvuo2FH5y_6aSgEo="
                                                 alt=""/>
-                                            <span>{message.username}</span>
                                         </div>
                                     </div>
                                     <div className="message-content">
                                         <div className="message-text">
+                                            <span>{message.username}</span>
                                             {message.text}
                                             <div className="message-time">
                                                 {getFormattedTime(message.date)}

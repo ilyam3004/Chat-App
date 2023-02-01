@@ -290,20 +290,21 @@ body {
                 height: 40px;
                 border-radius: 50%;
               }
-
-              span {
-                font-size: 13px;
-                color: #ffffff;
-              }
             }
           }
 
           .message-content {
             max-width: 30%;
             display: flex;
+            align-items: end;
             background-color: white;
-            border-radius: 15px 15px 15px 0px;
-            align-items: center;
+            border-radius: 15px 15px 15px 0;
+
+            span {
+              color: #f48989;
+              display: flex;
+              justify-content: start;
+            }
 
             .message-text {
               max-width: 95%;
@@ -315,10 +316,10 @@ body {
 
               .message-time {
                 display: flex;
-                justify-content: end;
                 color: #a9a7a7;
                 font-size: 10px;
                 padding-top: 5px;
+                justify-content: end;
               }
             }
           }
@@ -332,10 +333,9 @@ body {
 
               .message-text {
                 color: #000000;
-
-                .message-time {
-                  color: rgb(151, 180, 200);
-                }
+              }
+              .message-time {
+                color: rgb(151, 180, 200);
               }
             }
           }
