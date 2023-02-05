@@ -18,7 +18,7 @@ function App() {
     const joinRoom = async (request: IJoinRoomRequest) => {
         try {
             const connection = new HubConnectionBuilder()
-                .withUrl("http://localhost:5113/chathub")
+                .withUrl("https://chat-app-server.azurewebsites.net/chatHub")
                 .configureLogging(LogLevel.Information)
                 .build();
 
