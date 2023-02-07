@@ -172,13 +172,15 @@ body {
         .user {
           display: flex;
           align-items: center;
+
           img {
             width: 40px;
             height: 40px;
             border-radius: 50%;
             padding-right: 10px;
           }
-          span{
+
+          span {
             padding-right: 25px;
           }
         }
@@ -208,7 +210,7 @@ body {
           padding: 5px 0;
           align-items: center;
 
-          .user-img{
+          .user-img {
             padding: 5px 15px 0px 20px;
 
             img {
@@ -217,7 +219,8 @@ body {
               border-radius: 50%;
             }
           }
-          .username{
+
+          .username {
             color: #6a6a6a;
           }
         }
@@ -241,11 +244,12 @@ body {
         flex-direction: column;
         border-bottom: 1px #e4e4e6 solid;
 
-        span{
+        span {
           color: #6a6a6a;
           font-size: 18px;
         }
-        .members-count{
+
+        .members-count {
           color: #bcbcbc;
           font-size: 11px;
         }
@@ -334,6 +338,7 @@ body {
               .message-text {
                 color: #000000;
               }
+
               .message-time {
                 color: rgb(151, 180, 200);
               }
