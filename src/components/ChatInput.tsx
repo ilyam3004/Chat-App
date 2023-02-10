@@ -2,24 +2,26 @@ import React, {FormEvent, useRef, FC, useState, ChangeEvent} from 'react';
 import {HubConnection} from "@microsoft/signalr";
 import "../App.scss";
 import axios from "axios";
+import {ISendImgToRoomRequest, IUploadResult, IUser} from "../types/types";
 
 interface ChatInputProps {
     connection: HubConnection;
+    userData: IUser;
 }
 
-export const ChatInput: FC<ChatInputProps> = ({connection}) => {
+export const ChatInput: FC<ChatInputProps> = ({connection, userData}) => {
 
     const messageRef = useRef<HTMLInputElement>(null);
     const fileRef = useRef<HTMLInputElement>(null);
     const [count, setCount] = useState<number>(0);
-    const [selectedFile, setSelectedFile] = useState<File>();
-    const baseUrl = "http://localhost:5113/";
+    const [selectedFile, setSelectedFile] = useState<File | null>();
+    const baseUrl = "https://chat-app-server.azurewebsites.net/";
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setCount(0);
         if (selectedFile) {
-            sendImage(selectedFile);
+            await uploadImage(selectedFile);
         }
         if (messageRef.current!.value.length > 0) {
             await sendMessage(messageRef.current!.value);
@@ -34,8 +36,6 @@ export const ChatInput: FC<ChatInputProps> = ({connection}) => {
 
     const onFileInputChange = (e: ChangeEvent<HTMLInputElement>) => {
         if (e.target.files) {
-            console.log(e.target.files[0]);
-            console.log(fileRef.current?.files)
             setSelectedFile(e.target.files[0]);
         }
     }
@@ -48,24 +48,31 @@ export const ChatInput: FC<ChatInputProps> = ({connection}) => {
         }
     }
 
-    const sendImage = async (image: File) => {
+    const uploadImage = async (image: File) => {
         let data = new FormData();
-        data.append('File', image);
+        data.append('image', image);
         const url = `${baseUrl}img/uploadImage`;
-        await fetch(url,
-            {
-                method: 'POST',
-                mode: 'cors',
-                headers: {
-                    'Accept': 'multipart/form-data',
-                },
-                body: data
-            }).then((response) => {
-            console.log(response.body)
+        axios.post(url, data).then((response) => {
+            sendImage(response.data);
         }).catch((error) => {
             console.log(error);
         });
     };
+
+    const sendImage = async (uploadResult: IUploadResult) => {
+
+        const request: ISendImgToRoomRequest = {
+            roomId: userData.roomId,
+            imageUrl: uploadResult.imgUrl,
+            userId: userData.userId,
+        };
+
+        try {
+            await connection.invoke("SendImageToRoom", request);
+        } catch (e) {
+            console.log(e);
+        }
+    }
 
     return (
         <form className="chat-input"
@@ -80,6 +87,7 @@ export const ChatInput: FC<ChatInputProps> = ({connection}) => {
             </div>
             <input type="file"
                    ref={fileRef}
+                   accept="image/png, image/gif, image/jpeg"
                    onChange={onFileInputChange}/>
             <div className="send">
                 <button type="submit"
