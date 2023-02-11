@@ -27,7 +27,8 @@ export const Chat: FC<ChatProps> = ({messages, userData, connection, membersCoun
             </div>
             <Messages messages={messages}
                       user={userData}/>
-            <ChatInput connection={connection}/>
+            <ChatInput connection={connection}
+                       userData={userData}/>
         </div>
     );
 };

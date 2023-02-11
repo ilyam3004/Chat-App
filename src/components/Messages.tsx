@@ -25,7 +25,6 @@ export const Messages: FC<MessagesProps> = ({messages, user}) => {
         }, {} as Record<K, T[]>);
 
     const getDateInFormat = (date: Date):string => {
-        console.log(date);
         return moment(date)
             .utc()
             .local()
