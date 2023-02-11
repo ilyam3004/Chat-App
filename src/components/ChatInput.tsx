@@ -1,8 +1,8 @@
+import {ISendImgToRoomRequest, IUploadResult, IUser} from "../types/types";
 import React, {FormEvent, useRef, FC, useState, ChangeEvent} from 'react';
 import {HubConnection} from "@microsoft/signalr";
 import "../App.scss";
 import axios from "axios";
-import {ISendImgToRoomRequest, IUploadResult, IUser} from "../types/types";
 
 interface ChatInputProps {
     connection: HubConnection;
@@ -21,7 +21,9 @@ export const ChatInput: FC<ChatInputProps> = ({connection, userData}) => {
         e.preventDefault();
         setCount(0);
         if (selectedFile) {
+            fileRef.current!.value = '';
             await uploadImage(selectedFile);
+            setSelectedFile(null);
         }
         if (messageRef.current!.value.length > 0) {
             await sendMessage(messageRef.current!.value);
@@ -73,6 +75,10 @@ export const ChatInput: FC<ChatInputProps> = ({connection, userData}) => {
             console.log(e);
         }
     }
+    
+    const getFormattedName = (fileName: string): string => {
+        return fileName.length > 10 ? `${fileName.slice(0, 10)}...` : fileName;
+    }
 
     return (
         <form className="chat-input"
@@ -85,10 +91,25 @@ export const ChatInput: FC<ChatInputProps> = ({connection, userData}) => {
             <div className="counter" style={{color: count > 150 ? "#f17c7c" : "#a9a7a7"}}>
                 {count}/150
             </div>
-            <input type="file"
-                   ref={fileRef}
-                   accept="image/png, image/gif, image/jpeg"
-                   onChange={onFileInputChange}/>
+            <label className="file-input">
+                <input type="file"
+                       ref={fileRef}
+                       accept="image/png, image/gif, image/jpeg"
+                       onChange={onFileInputChange}/>
+                    <span>
+                        {
+                            selectedFile
+                                ?
+                                <div>
+                                    {getFormattedName(selectedFile.name)}
+                                </div>
+                                :
+                                <div>
+                                    Add image
+                                </div>
+                        }
+                    </span>
+            </label>
             <div className="send">
                 <button type="submit"
                         disabled={!fileRef.current?.files && !messageRef.current?.value || count > 150}>
