@@ -11,6 +11,8 @@ export interface IMessage {
     text: string;
     date: Date;
     fromUser: boolean;
+    isImage: boolean;
+    imageUrl: string;
 }
 
 export interface IUser {
@@ -25,4 +27,15 @@ export interface IError{
     title: string;
     type: string;
     errors: Record<string, string[]>;
+}
+
+export interface IUploadResult{
+    publicId: string;
+    imgUrl: string;
+}
+
+export interface ISendImgToRoomRequest{
+    userId: string;
+    roomId: string,
+    imageUrl: string;
 }

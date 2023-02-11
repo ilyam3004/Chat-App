@@ -23,6 +23,7 @@ function App() {
                 .build();
 
             connection.on("ReceiveMessage", (message: IMessage) => {
+                console.log(message);
                 setMessages(messages => [...messages, message])
             });
 
