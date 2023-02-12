@@ -1,5 +1,7 @@
-import React, {FC, useState} from 'react';
+import React, {FC, useEffect, useRef, useState} from 'react';
 import {IMessage} from "../types/types";
+import {LazyLoadImage} from "react-lazy-load-image-component";
+import { getImageSize } from "react-image-size";
 
 interface ICurrentUserMessageProps {
     message: IMessage;
@@ -17,6 +19,8 @@ export const CurrentUserMessage: FC<ICurrentUserMessageProps> = ({message, forma
         setClickedImg(null);
     }
 
+
+
     return (
         <div className="message owner">
             <div className="message-info-container">
@@ -30,7 +34,10 @@ export const CurrentUserMessage: FC<ICurrentUserMessageProps> = ({message, forma
                 message.isImage
                     ?
                     <div className="img-content">
-                        <img src={message.imageUrl}
+                        <LazyLoadImage
+                             height={100}
+                             effect={"blur"}
+                             src={message.imageUrl}
                              alt=""
                              onClick={onImgClick}/>
                     </div>
@@ -47,7 +54,7 @@ export const CurrentUserMessage: FC<ICurrentUserMessageProps> = ({message, forma
             {
                 clickedImg &&
                 (<div className="overlay" onClick={onImgExitClick}>
-                    <img src={clickedImg} alt="bigger pic"/>
+                    <img src={clickedImg}/>
                     <span onClick={onImgExitClick}>
                         X
                     </span>
