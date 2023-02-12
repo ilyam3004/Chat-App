@@ -1,5 +1,6 @@
-import React, {FC, useState} from 'react';
+import React, {FC, useState, useRef, useEffect} from 'react';
 import {IMessage} from "../types/types";
+import {LazyLoadImage} from "react-lazy-load-image-component";
 
 interface IRoomMateMessageProps {
     message: IMessage;
@@ -31,9 +32,12 @@ export const RoomMateMessage: FC<IRoomMateMessageProps> = ({message, formatTime}
                 message.isImage
                     ?
                     <div className="img-content">
-                        <img src={message.imageUrl}
-                             alt=""
-                             onClick={onImgClick}/>
+                        <LazyLoadImage
+                            height={100}
+                            effect={"blur"}
+                            src={message.imageUrl}
+                            alt=""
+                            onClick={onImgClick}/>
                     </div>
                     :
                     <div className="message-content">
@@ -49,7 +53,7 @@ export const RoomMateMessage: FC<IRoomMateMessageProps> = ({message, formatTime}
             {
                 clickedImg &&
                 (<div className="overlay" onClick={onImgExitClick}>
-                    <img src={clickedImg} alt="bigger pic"/>
+                    <img src={clickedImg}/>
                     <span onClick={onImgExitClick}>
                         X
                     </span>
@@ -57,4 +61,4 @@ export const RoomMateMessage: FC<IRoomMateMessageProps> = ({message, formatTime}
             }
         </div>
     );
-};
+}
