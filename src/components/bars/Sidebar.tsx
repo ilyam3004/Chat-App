@@ -1,8 +1,8 @@
 import React, {FC} from 'react';
-import {IUser} from "../types/types";
-import {UserList} from "./UserList";
+import {IUser} from "../../types/types";
+import {UserList} from "../userList/UserList";
 import {Navbar} from "./Navbar";
-import "../App.scss";
+import "../../App.scss";
 
 interface SidebarProps {
     userData: IUser;

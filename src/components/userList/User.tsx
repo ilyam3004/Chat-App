@@ -1,6 +1,6 @@
-import {IUser} from "../types/types";
+import {IUser} from "../../types/types";
 import React, {FC} from "react";
-import "../App.scss";
+import "../../App.scss";
 
 interface UserProps {
     user: IUser;

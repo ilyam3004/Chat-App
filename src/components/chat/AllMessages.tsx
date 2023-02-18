@@ -1,15 +1,15 @@
 import React, {FC, useEffect, useState} from 'react';
-import {IMessage, IUser} from "../types/types";
-import {DateMessages} from "./DateMessages";
+import {IMessage, IUser} from "../../types/types";
+import {MessagesByDate} from "./MessagesByDate";
 import moment from "moment";
-import "../App.scss";
+import "../../App.scss";
 
 interface MessagesProps {
     messages: IMessage[];
     user: IUser;
 }
 
-export const Messages: FC<MessagesProps> = ({messages, user}) => {
+export const AllMessages: FC<MessagesProps> = ({messages, user}) => {
 
     const [messagesByDate, setMessagesByDate] = useState<Record<string, IMessage[]> | null>(null);
 
@@ -42,9 +42,9 @@ export const Messages: FC<MessagesProps> = ({messages, user}) => {
                 messagesByDate
                 ?
                     Object.keys(messagesByDate).map((date:string) => {
-                        return <DateMessages key={date} date={date}
-                                             messagesByDate={messagesByDate[date]}
-                                             user={user}/>})
+                        return <MessagesByDate key={date} date={date}
+                                               messagesByDate={messagesByDate[date]}
+                                               user={user}/>})
                 :
                     <div></div>
             }
