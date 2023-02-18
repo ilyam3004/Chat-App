@@ -1,5 +1,5 @@
 import React, {ChangeEvent, useState} from "react";
-import '../App.scss';
+import '../../App.scss';
 
 interface LobbyInputProps {
     name: string;

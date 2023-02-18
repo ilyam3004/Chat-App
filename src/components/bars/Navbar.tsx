@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import {useNavigate} from "react-router-dom";
-import {IUser} from "../types/types";
-import "../App.scss";
+import {IUser} from "../../types/types";
+import "../../App.scss";
 
 interface NavbarProps {
     closeConnection: () => void;
