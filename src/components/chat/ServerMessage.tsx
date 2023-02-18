@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import {IMessage} from "../types/types";
+import {IMessage} from "../../types/types";
 
 interface ServerMessageProps{
     message: IMessage;

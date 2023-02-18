@@ -1,9 +1,9 @@
 import React, {FC} from 'react';
-import {Messages} from "./Messages";
-import {ChatInput} from "./ChatInput";
+import {AllMessages} from "./AllMessages";
+import {ChatInput} from "../inputs/ChatInput";
 import {HubConnection} from "@microsoft/signalr";
-import {IMessage, IUser} from "../types/types";
-import "../App.scss";
+import {IMessage, IUser} from "../../types/types";
+import "../../App.scss";
 
 interface ChatProps {
     connection: HubConnection;
@@ -25,8 +25,8 @@ export const Chat: FC<ChatProps> = ({messages, userData, connection, membersCoun
                             <div className="members-count">{membersCount} member</div>
                 }
             </div>
-            <Messages messages={messages}
-                      user={userData}/>
+            <AllMessages messages={messages}
+                         user={userData}/>
             <ChatInput connection={connection}
                        userData={userData}/>
         </div>
