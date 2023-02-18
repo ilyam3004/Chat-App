@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
-import {IUser} from "../types/types";
+import {IUser} from "../../types/types";
 import {User} from "./User";
-import "../App.scss";
+import "../../App.scss";
 
 interface UserListProps {
     users: IUser[]

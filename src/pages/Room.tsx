@@ -1,6 +1,6 @@
 import React, {FC, useEffect, useState} from 'react';
-import {Chat} from "../components/Chat";
-import {Sidebar} from "../components/Sidebar";
+import {Chat} from "../components/chat/Chat";
+import {Sidebar} from "../components/bars/Sidebar";
 import {IMessage, IUser} from "../types/types";
 import {HubConnection} from "@microsoft/signalr";
 import {MoonLoader} from "react-spinners";

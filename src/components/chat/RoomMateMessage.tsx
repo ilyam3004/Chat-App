@@ -1,13 +1,13 @@
-import React, {FC, useState, useRef, useEffect} from 'react';
-import {IMessage} from "../types/types";
-import {LazyLoadImage} from "react-lazy-load-image-component";
+import React, {FC, useState, useEffect} from 'react';
+import {IMessage} from "../../types/types";
 
 interface IRoomMateMessageProps {
     message: IMessage;
     formatTime: (date: Date) => string;
+    endComponentRef: React.RefObject<HTMLDivElement>;
 }
 
-export const RoomMateMessage: FC<IRoomMateMessageProps> = ({message, formatTime}) => {
+export const RoomMateMessage: FC<IRoomMateMessageProps> = ({message, formatTime, endComponentRef}) => {
 
     const [clickedImg, setClickedImg] = useState<string | null>(null);
 
@@ -18,6 +18,18 @@ export const RoomMateMessage: FC<IRoomMateMessageProps> = ({message, formatTime}
     const onImgExitClick = (e: React.MouseEvent<HTMLDivElement>) => {
         setClickedImg(null);
     }
+
+    const handleOnLoad = () => {
+        endComponentRef.current?.scrollIntoView({ behavior: "smooth" });
+    }
+
+    useEffect(() => {
+        if(!message.isImage){
+            endComponentRef.current?.scrollIntoView({ behavior: "smooth" })
+            console.log(message);
+        }
+    }, []);
+
 
     return (
         <div className="message">
@@ -32,12 +44,11 @@ export const RoomMateMessage: FC<IRoomMateMessageProps> = ({message, formatTime}
                 message.isImage
                     ?
                     <div className="img-content">
-                        <LazyLoadImage
-                            height={100}
-                            effect={"blur"}
-                            src={message.imageUrl}
-                            alt=""
-                            onClick={onImgClick}/>
+                        <img src={message.imageUrl}
+                             alt=""
+                             onClick={onImgClick}
+                             loading="lazy"
+                             onLoad={handleOnLoad}/>
                     </div>
                     :
                     <div className="message-content">

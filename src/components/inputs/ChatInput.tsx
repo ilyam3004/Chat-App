@@ -1,7 +1,7 @@
-import {ISendImgToRoomRequest, IUploadResult, IUser} from "../types/types";
+import {ISendImgToRoomRequest, IUploadResult, IUser} from "../../types/types";
 import React, {FormEvent, useRef, FC, useState, ChangeEvent} from 'react';
 import {HubConnection} from "@microsoft/signalr";
-import "../App.scss";
+import "../../App.scss";
 import axios from "axios";
 
 interface ChatInputProps {
