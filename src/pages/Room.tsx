@@ -1,11 +1,10 @@
-import React, {FC, useEffect, useState} from 'react';
-import {Chat} from "../components/chat/Chat";
+import React, {Dispatch, FC, SetStateAction, useEffect, useState} from 'react';
 import {Sidebar} from "../components/bars/Sidebar";
-import {IMessage, IUser} from "../types/types";
 import {HubConnection} from "@microsoft/signalr";
-import {MoonLoader} from "react-spinners";
-import {toast, ToastContainer} from "react-toastify";
+import {IMessage, IUser} from "../types/types";
 import 'react-toastify/dist/ReactToastify.css';
+import {Chat} from "../components/chat/Chat";
+import {MoonLoader} from "react-spinners";
 import "../App.scss";
 
 interface RoomProps {
@@ -16,16 +15,15 @@ interface RoomProps {
     closeConnection: () => void;
 }
 
-
 export const Room: FC<RoomProps> = ({userData, userList, messages, connection, closeConnection}) => {
 
     const [loading, setLoading] = useState<boolean>(true);
 
     useEffect(() => {
-            let timer: NodeJS.Timeout = setTimeout(() => setLoading(false), 2000);
-            return () => {
-                clearInterval(timer);
-            };
+        let timer: NodeJS.Timeout = setTimeout(() => setLoading(false), 2000);
+        return () => {
+            clearInterval(timer);
+        };
     }, []);
 
     return (
@@ -48,7 +46,8 @@ export const Room: FC<RoomProps> = ({userData, userList, messages, connection, c
                             (<div className="room-container">
                                 <Sidebar userData={userData}
                                          userList={userList}
-                                         closeConnection={closeConnection}/>
+                                         closeConnection={closeConnection}
+                                         connection={connection}/>
                                 <Chat messages={messages}
                                       userData={userData}
                                       connection={connection}

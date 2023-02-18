@@ -28,7 +28,7 @@ export const MessagesByDate: FC<DateMessagesProps> = ({messagesByDate, user, dat
             </div>
             {
                 messagesByDate.map(message => {
-                    return <div className="message-container">
+                    return <div key={message.messageId} className="message-container">
                         {
                             message.fromUser
                                 ?
