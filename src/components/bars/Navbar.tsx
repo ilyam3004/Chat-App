@@ -16,6 +16,7 @@ export const Navbar: FC<NavbarProps> = ({closeConnection, userData}) => {
         closeConnection();
         navigate('../');
     }
+
     return (
         <div className="navbar">
             <span className="logo">Chat app</span>
@@ -24,7 +25,8 @@ export const Navbar: FC<NavbarProps> = ({closeConnection, userData}) => {
                      alt=""/>
                 <span>{userData.username}</span>
                 <button className="log-out-button"
-                        onClick={logOut}>Logout
+                        onClick={logOut}>
+                    Leave
                 </button>
             </div>
         </div>
