@@ -1,5 +1,6 @@
 export interface IJoinRoomRequest {
     username: string;
+    avatar: string;
     roomName: string;
 }
 

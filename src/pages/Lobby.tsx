@@ -1,7 +1,8 @@
-import React, {FC, FormEvent, useEffect, useState} from "react";
+import React, {ChangeEvent, FC, FormEvent, useEffect, useRef, useState} from "react";
 import {IError, IJoinRoomRequest} from "../types/types";
 import {MoonLoader} from "react-spinners";
 import '../App.scss';
+import {uploadImg} from "../requests/uploadImg";
 
 interface LobbyProps {
     joinRoom: (request: IJoinRoomRequest) => void;
@@ -11,21 +12,36 @@ interface LobbyProps {
 
 export const Lobby: FC<LobbyProps> = ({joinRoom, error, setError}) => {
 
-    const [values, setValues] = useState<IJoinRoomRequest>({username: '', roomName: ''});
+    const [userData, setUserData] = useState<IJoinRoomRequest>({username: '', roomName: '', avatar: ''});
     const [loading, setLoading] = useState(false);
+    const imgInputRef = useRef<HTMLInputElement>(null);
+    const [avatar, setAvatar] = useState<File | null>();
     const delayInSeconds: number = 2;
 
-    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setError(null);
         setLoading(true);
-        if (values.username && values.roomName) {
-            joinRoom(values);
+
+        if(avatar){
+            const avatarUrl = await uploadImg(avatar);
+            console.log(avatarUrl);
+        }
+        if (userData.username && userData.roomName) {
+            //joinRoom(userData);
+            console.log('invoke joinRoom');
         }
     }
 
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setValues({...values, [e.target.name]: e.target.value})
+        setUserData({...userData, [e.target.name]: e.target.value})
+    }
+
+    const onImgInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files) {
+            console.log(e.target.files[0])
+            setAvatar(e.target.files[0]);
+        }
     }
 
     const getError = (): string => {
@@ -96,6 +112,10 @@ export const Lobby: FC<LobbyProps> = ({joinRoom, error, setError}) => {
                            placeholder="Roomname"
                            required={true}
                            onChange={onChange}/>
+                    <input type="file"
+                           ref={imgInputRef}
+                           accept="image/png, image/gif, image/jpeg"
+                           onChange={onImgInputChange}/>
                 </div>
                 <button className="lobby-button" type="submit">
                     Join

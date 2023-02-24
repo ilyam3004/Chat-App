@@ -1,7 +1,7 @@
 import {ISendImgToRoomRequest, IUploadResult, IUser} from "../../types/types";
 import React, {FormEvent, useRef, FC, useState, ChangeEvent} from 'react';
 import {HubConnection} from "@microsoft/signalr";
-import axios from "axios";
+import {uploadImg} from "../../requests/uploadImg";
 import "../../App.scss";
 
 interface ChatInputProps {
@@ -11,23 +11,25 @@ interface ChatInputProps {
 
 export const ChatInput: FC<ChatInputProps> = ({connection, userData}) => {
 
-    const messageRef = useRef<HTMLInputElement>(null);
-    const fileRef = useRef<HTMLInputElement>(null);
+    const messageInputRef = useRef<HTMLInputElement>(null);
+    const imgInputRef = useRef<HTMLInputElement>(null);
     const [count, setCount] = useState<number>(0);
     const [selectedFile, setSelectedFile] = useState<File | null>();
-    const baseUrl = "https://chat-app-server.azurewebsites.net/";
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setCount(0);
+
         if (selectedFile) {
-            fileRef.current!.value = '';
-            await uploadImage(selectedFile);
+            imgInputRef.current!.value = '';
+            const uploadResult = await uploadImg(selectedFile);
+            await sendImage(uploadResult);
             setSelectedFile(null);
         }
-        if (messageRef.current!.value.length > 0) {
-            await sendMessage(messageRef.current!.value);
-            messageRef.current!.value = '';
+
+        if (messageInputRef.current!.value.length > 0) {
+            await sendMessage(messageInputRef.current!.value);
+            messageInputRef.current!.value = '';
         }
     }
 
@@ -36,7 +38,7 @@ export const ChatInput: FC<ChatInputProps> = ({connection, userData}) => {
         setCount(e.target.value.length);
     }
 
-    const onFileInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const onImgInputChange = (e: ChangeEvent<HTMLInputElement>) => {
         if (e.target.files) {
             setSelectedFile(e.target.files[0]);
         }
@@ -49,17 +51,6 @@ export const ChatInput: FC<ChatInputProps> = ({connection, userData}) => {
             console.log(e);
         }
     }
-
-    const uploadImage = async (image: File) => {
-        let data = new FormData();
-        data.append('image', image);
-        const url = `${baseUrl}img/uploadImage`;
-        axios.post(url, data).then((response) => {
-            sendImage(response.data);
-        }).catch((error) => {
-            console.log(error);
-        });
-    };
 
     const sendImage = async (uploadResult: IUploadResult) => {
 
@@ -85,17 +76,18 @@ export const ChatInput: FC<ChatInputProps> = ({connection, userData}) => {
               onSubmit={handleSubmit}>
             <input
                 type="text"
-                ref={messageRef}
+                ref={messageInputRef}
                 placeholder="Type message..."
                 onChange={onTextInputChange}/>
-            <div className="counter" style={{color: count > 150 ? "#f17c7c" : "#a9a7a7"}}>
+            <div className="counter"
+                 style={{color: count > 150 ? "#f17c7c" : "#a9a7a7"}}>
                 {count}/150
             </div>
             <label className="file-input">
                 <input type="file"
-                       ref={fileRef}
+                       ref={imgInputRef}
                        accept="image/png, image/gif, image/jpeg"
-                       onChange={onFileInputChange}/>
+                       onChange={onImgInputChange}/>
                     <span>
                         {
                             selectedFile
@@ -112,7 +104,7 @@ export const ChatInput: FC<ChatInputProps> = ({connection, userData}) => {
             </label>
             <div className="send">
                 <button type="submit"
-                        disabled={!fileRef.current?.files && !messageRef.current?.value || count > 150}>
+                        disabled={!imgInputRef.current?.files && !messageInputRef.current?.value || count > 150}>
                     Send
                 </button>
             </div>
