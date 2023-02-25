@@ -1,9 +1,9 @@
-import React, {FC} from 'react';
-import {IUser} from "../../types/types";
+import {HubConnection} from "@microsoft/signalr";
 import {UserList} from "../userList/UserList";
+import {IUser} from "../../types/types";
+import React, {FC} from 'react';
 import {Navbar} from "./Navbar";
 import "../../App.scss";
-import {HubConnection} from "@microsoft/signalr";
 
 interface SidebarProps {
     userData: IUser;

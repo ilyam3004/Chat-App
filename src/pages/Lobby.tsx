@@ -1,8 +1,8 @@
 import React, {ChangeEvent, FC, FormEvent, useEffect, useRef, useState} from "react";
 import {IError, IJoinRoomRequest} from "../types/types";
+import {uploadAvatar, uploadImg} from "../requests/uploadImg";
 import {MoonLoader} from "react-spinners";
 import '../App.scss';
-import {uploadImg} from "../requests/uploadImg";
 
 interface LobbyProps {
     joinRoom: (request: IJoinRoomRequest) => void;
@@ -22,9 +22,9 @@ export const Lobby: FC<LobbyProps> = ({joinRoom, error, setError}) => {
         e.preventDefault();
         setError(null);
         setLoading(true);
-        console.log(avatar);
+
         if(avatar){
-            const avatarUrl = await uploadImg(avatar);
+            const avatarUrl = await uploadAvatar(avatar);
             userData.avatar = avatarUrl.imgUrl;
         }
         if (userData.username && userData.roomName) {
