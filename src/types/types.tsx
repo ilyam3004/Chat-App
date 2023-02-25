@@ -9,7 +9,7 @@ export interface IMessage {
     roomId: string;
     username: string;
     userId: string;
-    avatar: string;
+    userAvatar: string;
     text: string;
     date: Date;
     fromUser: boolean;
