@@ -6,9 +6,10 @@ export interface IJoinRoomRequest {
 
 export interface IMessage {
     messageId: string;
-    username: string;
     roomId: string;
+    username: string;
     userId: string;
+    avatar: string;
     text: string;
     date: Date;
     fromUser: boolean;
@@ -22,6 +23,7 @@ export interface IUser {
     connectionId: string;
     roomId: string;
     roomName: string;
+    avatar: string;
 }
 export interface IError{
     status: number;
