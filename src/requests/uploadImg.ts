@@ -1,9 +1,7 @@
 import axios from "axios";
 import {IUploadResult} from "../types/types";
 
-//const baseUrl = "https://chat-app-server.azurewebsites.net/";
-const baseUrl = "http://localhost:5113/";
-
+const baseUrl = "https://chat-app-server.azurewebsites.net/";
 
 export async function uploadImg(image: File):Promise<IUploadResult> {
     let data = new FormData();
