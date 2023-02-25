@@ -15,21 +15,20 @@ export const Lobby: FC<LobbyProps> = ({joinRoom, error, setError}) => {
     const [userData, setUserData] = useState<IJoinRoomRequest>({username: '', roomName: '', avatar: ''});
     const [loading, setLoading] = useState(false);
     const imgInputRef = useRef<HTMLInputElement>(null);
-    const [avatar, setAvatar] = useState<File | null>();
+    const [avatar, setAvatar] = useState<File | null>(null);
     const delayInSeconds: number = 2;
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setError(null);
         setLoading(true);
-
+        console.log(avatar);
         if(avatar){
             const avatarUrl = await uploadImg(avatar);
-            console.log(avatarUrl);
+            userData.avatar = avatarUrl.imgUrl;
         }
         if (userData.username && userData.roomName) {
-            //joinRoom(userData);
-            console.log('invoke joinRoom');
+            joinRoom(userData);
         }
     }
 
@@ -39,7 +38,6 @@ export const Lobby: FC<LobbyProps> = ({joinRoom, error, setError}) => {
 
     const onImgInputChange = (e: ChangeEvent<HTMLInputElement>) => {
         if (e.target.files) {
-            console.log(e.target.files[0])
             setAvatar(e.target.files[0]);
         }
     }

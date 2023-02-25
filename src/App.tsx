@@ -55,6 +55,13 @@ function App() {
         }
     }
 
+    const clearAllData = () => {
+        setRoomUsers([]);
+        setError(null);
+        setUserData(null);
+        setMessages([]);
+    }
+
     const closeConnection = async () => {
         try {
             if (serverConnection) {
@@ -72,6 +79,7 @@ function App() {
                                                  error={error}
                                                  setError={setError}/>}/>
             <Route path="/room/:id" element={<Room userList={roomUsers}
+                                                   clearAllRoomData={clearAllData}
                                                    messages={messages}
                                                    connection={serverConnection}
                                                    closeConnection={closeConnection}
