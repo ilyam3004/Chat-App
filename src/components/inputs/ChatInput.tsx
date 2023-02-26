@@ -1,9 +1,9 @@
 import {ISendImgToRoomRequest, IUploadResult, IUser} from "../../types/types";
-import React, {FormEvent, useRef, FC, useState, ChangeEvent} from 'react';
-import {HubConnection} from "@microsoft/signalr";
+import React, {FormEvent, useRef, FC, useState} from 'react';
 import {uploadImg} from "../../requests/uploadImg";
-import "../../App.scss";
+import {HubConnection} from "@microsoft/signalr";
 import {FileInput} from "./FileInput";
+import "../../App.scss";
 
 interface ChatInputProps {
     connection: HubConnection;
@@ -16,6 +16,13 @@ export const ChatInput: FC<ChatInputProps> = ({connection, userData}) => {
     const imgInputRef = useRef<HTMLInputElement>(null);
     const [count, setCount] = useState<number>(0);
     const [selectedImage, setSelectedImage] = useState<File | null>();
+
+    const inputStyles = {
+        color: "white",
+        backgroundColor: "DodgerBlue",
+        padding: "10px",
+        fontFamily: "Arial"
+    };
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -77,7 +84,8 @@ export const ChatInput: FC<ChatInputProps> = ({connection, userData}) => {
             <FileInput imgInputRef={imgInputRef}
                        selectedFile={selectedImage}
                        setSelectedFile={setSelectedImage}
-                       caption="Add image"/>
+                       caption="Add image"
+                       parentComponent="chat"/>
             <div className="send">
                 <button type="submit"
                         disabled={!imgInputRef.current?.files && !messageInputRef.current?.value || count > 150}>
