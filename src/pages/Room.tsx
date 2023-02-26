@@ -13,9 +13,10 @@ interface RoomProps {
     messages: IMessage[]
     connection: HubConnection | null;
     closeConnection: () => void;
+    clearAllRoomData: () => void;
 }
 
-export const Room: FC<RoomProps> = ({userData, userList, messages, connection, closeConnection}) => {
+export const Room: FC<RoomProps> = ({userData, userList, messages, connection, closeConnection, clearAllRoomData}) => {
 
     const [loading, setLoading] = useState<boolean>(true);
 
@@ -47,7 +48,8 @@ export const Room: FC<RoomProps> = ({userData, userList, messages, connection, c
                                 <Sidebar userData={userData}
                                          userList={userList}
                                          closeConnection={closeConnection}
-                                         connection={connection}/>
+                                         connection={connection}
+                                         clearAllRoomData={clearAllRoomData}/>
                                 <Chat messages={messages}
                                       userData={userData}
                                       connection={connection}

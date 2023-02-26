@@ -1,7 +1,9 @@
-import React, {FC, FormEvent, useEffect, useState} from "react";
+import React, {ChangeEvent, FC, FormEvent, useEffect, useRef, useState} from "react";
 import {IError, IJoinRoomRequest} from "../types/types";
+import {uploadAvatar, uploadImg} from "../requests/uploadImg";
 import {MoonLoader} from "react-spinners";
 import '../App.scss';
+import {FileInput} from "../components/inputs/FileInput";
 
 interface LobbyProps {
     joinRoom: (request: IJoinRoomRequest) => void;
@@ -11,21 +13,28 @@ interface LobbyProps {
 
 export const Lobby: FC<LobbyProps> = ({joinRoom, error, setError}) => {
 
-    const [values, setValues] = useState<IJoinRoomRequest>({username: '', roomName: ''});
+    const [userData, setUserData] = useState<IJoinRoomRequest>({username: '', roomName: '', avatar: ''});
     const [loading, setLoading] = useState(false);
+    const avatarInputRef = useRef<HTMLInputElement>(null);
+    const [avatar, setAvatar] = useState<File | null>();
     const delayInSeconds: number = 2;
 
-    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setError(null);
         setLoading(true);
-        if (values.username && values.roomName) {
-            joinRoom(values);
+
+        if(avatar){
+            const avatarUrl = await uploadAvatar(avatar);
+            userData.avatar = avatarUrl.imgUrl;
+        }
+        if (userData.username && userData.roomName) {
+            joinRoom(userData);
         }
     }
 
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setValues({...values, [e.target.name]: e.target.value})
+        setUserData({...userData, [e.target.name]: e.target.value})
     }
 
     const getError = (): string => {
@@ -82,20 +91,26 @@ export const Lobby: FC<LobbyProps> = ({joinRoom, error, setError}) => {
                         data-testid="loader"/>
                 </div>
                 <div className="lobby-input-container">
-                    <label className="input-label">Username</label>
+                    <label className="input-label">Username </label>
                     <input className="lobby-input"
                            name="username"
                            type="text"
                            placeholder="Username"
                            required={true}
                            onChange={onChange}/>
-                    <label className="input-label">Roomname</label>
+                    <label className="input-label">Roomname </label>
                     <input className="lobby-input"
                            name="roomName"
                            type="text"
                            placeholder="Roomname"
                            required={true}
                            onChange={onChange}/>
+                    <label className="not-required-input-label">Avatar</label>
+                    <FileInput imgInputRef={avatarInputRef}
+                               selectedFile={avatar}
+                               setSelectedFile={setAvatar}
+                               caption="Avatar"
+                               parentComponent="lobby"/>
                 </div>
                 <button className="lobby-button" type="submit">
                     Join

@@ -20,12 +20,12 @@ export const RoomMateMessage: FC<IRoomMateMessageProps> = ({message, formatTime,
     }
 
     const handleOnLoad = () => {
-        endComponentRef.current?.scrollIntoView({ behavior: "smooth" });
+        endComponentRef.current?.scrollIntoView({behavior: "smooth"});
     }
 
     useEffect(() => {
-        if(!message.isImage){
-            endComponentRef.current?.scrollIntoView({ behavior: "smooth" })
+        if (!message.isImage) {
+            endComponentRef.current?.scrollIntoView({behavior: "smooth"})
             console.log(message);
         }
     }, []);
@@ -35,9 +35,17 @@ export const RoomMateMessage: FC<IRoomMateMessageProps> = ({message, formatTime,
         <div className="message">
             <div className="message-info-container">
                 <div className="message-info">
-                    <img
-                        src="https://media.istockphoto.com/id/1131164548/vector/avatar-5.jpg?s=612x612&w=0&k=20&c=CK49ShLJwDxE4kiroCR42kimTuuhvuo2FH5y_6aSgEo="
-                        alt=""/>
+                    {
+                        message.userAvatar
+                            ?
+                            <img
+                                src={message.userAvatar}
+                                alt=""/>
+                            :
+                            <img
+                                src="https://media.istockphoto.com/id/1131164548/vector/avatar-5.jpg?s=612x612&w=0&k=20&c=CK49ShLJwDxE4kiroCR42kimTuuhvuo2FH5y_6aSgEo="
+                                alt=""/>
+                    }
                 </div>
             </div>
             {

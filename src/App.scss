@@ -10,7 +10,6 @@ body {
   align-items: center;
   justify-content: center;
   height: 100vh;
-  //background: radial-gradient(circle, rgba(85, 169, 244, 1) 0%, rgba(244, 137, 137, 1) 100%, rgba(244, 137, 137, 1) 100%);
   background-color: #85d2f2;
   background-size: cover;
   background-position: center;
@@ -57,7 +56,7 @@ body {
   background-color: transparent;
   background-repeat: no-repeat;
   background-position: 0%;
-  margin: 20px 0;
+  margin: 15px 0;
 }
 
 .lobby-button:focus {
@@ -85,11 +84,16 @@ body {
 }
 
 .lobby-input {
-  padding: 15px;
+  padding: 18px;
+  font-size: 13px;
   margin: 10px 0px;
   border-radius: 5px;
   border: 1px solid gray;
   transition: all 0.4s ease-in-out;
+}
+
+.lobby-input::placeholder{
+  color: #afafaf;
 }
 
 .lobby-input:hover {
@@ -105,6 +109,16 @@ body {
 }
 
 .input-label {
+  font-size: 12px;
+  color: gray;
+}
+
+.input-label:after{
+  content: "*";
+  color: red;
+}
+
+.not-required-input-label{
   font-size: 12px;
   color: gray;
 }
@@ -177,7 +191,7 @@ body {
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            padding-right: 10px;
+            margin-right: 10px;
           }
 
           span {
@@ -423,37 +437,6 @@ body {
 
         .counter {
           padding: 0 20px 0 20px;
-        }
-
-        .file-input {
-          margin: 0 10px 0 10px;
-          cursor: pointer;
-          text-decoration: none;
-          text-align: center;
-          opacity: 1;
-          transition: 0.2s;
-          white-space: nowrap;
-          border-radius: 20px;
-          font-size: 15px;
-          padding: 10px 20px;
-          color: white;
-          background-color: #84d0f0;
-        }
-
-        .file-input input[type=file] {
-          position: absolute;
-          z-index: -1;
-          opacity: 0;
-          display: block;
-          width: 0;
-          height: 0;
-        }
-
-        .file-input:hover {
-          opacity: 0.6;
-        }
-        .file-input:active {
-          background-color: #84d0f0;
         }
 
         .send {

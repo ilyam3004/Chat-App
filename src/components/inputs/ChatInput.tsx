@@ -1,7 +1,8 @@
 import {ISendImgToRoomRequest, IUploadResult, IUser} from "../../types/types";
-import React, {FormEvent, useRef, FC, useState, ChangeEvent} from 'react';
+import React, {FormEvent, useRef, FC, useState} from 'react';
+import {uploadImg} from "../../requests/uploadImg";
 import {HubConnection} from "@microsoft/signalr";
-import axios from "axios";
+import {FileInput} from "./FileInput";
 import "../../App.scss";
 
 interface ChatInputProps {
@@ -11,35 +12,38 @@ interface ChatInputProps {
 
 export const ChatInput: FC<ChatInputProps> = ({connection, userData}) => {
 
-    const messageRef = useRef<HTMLInputElement>(null);
-    const fileRef = useRef<HTMLInputElement>(null);
+    const messageInputRef = useRef<HTMLInputElement>(null);
+    const imgInputRef = useRef<HTMLInputElement>(null);
     const [count, setCount] = useState<number>(0);
-    const [selectedFile, setSelectedFile] = useState<File | null>();
-    const baseUrl = "https://chat-app-server.azurewebsites.net/";
+    const [selectedImage, setSelectedImage] = useState<File | null>();
+
+    const inputStyles = {
+        color: "white",
+        backgroundColor: "DodgerBlue",
+        padding: "10px",
+        fontFamily: "Arial"
+    };
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setCount(0);
-        if (selectedFile) {
-            fileRef.current!.value = '';
-            await uploadImage(selectedFile);
-            setSelectedFile(null);
+
+        if (selectedImage) {
+            imgInputRef.current!.value = '';
+            const uploadResult = await uploadImg(selectedImage);
+            await sendImage(uploadResult);
+            setSelectedImage(null);
         }
-        if (messageRef.current!.value.length > 0) {
-            await sendMessage(messageRef.current!.value);
-            messageRef.current!.value = '';
+
+        if (messageInputRef.current!.value.length > 0) {
+            await sendMessage(messageInputRef.current!.value);
+            messageInputRef.current!.value = '';
         }
     }
 
     const onTextInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         e.preventDefault();
         setCount(e.target.value.length);
-    }
-
-    const onFileInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-        if (e.target.files) {
-            setSelectedFile(e.target.files[0]);
-        }
     }
 
     const sendMessage = async (message: string) => {
@@ -49,17 +53,6 @@ export const ChatInput: FC<ChatInputProps> = ({connection, userData}) => {
             console.log(e);
         }
     }
-
-    const uploadImage = async (image: File) => {
-        let data = new FormData();
-        data.append('image', image);
-        const url = `${baseUrl}img/uploadImage`;
-        axios.post(url, data).then((response) => {
-            sendImage(response.data);
-        }).catch((error) => {
-            console.log(error);
-        });
-    };
 
     const sendImage = async (uploadResult: IUploadResult) => {
 
@@ -75,44 +68,27 @@ export const ChatInput: FC<ChatInputProps> = ({connection, userData}) => {
             console.log(e);
         }
     }
-    
-    const getFormattedName = (fileName: string): string => {
-        return fileName.length > 10 ? `${fileName.slice(0, 10)}...` : fileName;
-    }
 
     return (
         <form className="chat-input"
               onSubmit={handleSubmit}>
             <input
                 type="text"
-                ref={messageRef}
+                ref={messageInputRef}
                 placeholder="Type message..."
                 onChange={onTextInputChange}/>
-            <div className="counter" style={{color: count > 150 ? "#f17c7c" : "#a9a7a7"}}>
+            <div className="counter"
+                 style={{color: count > 150 ? "#f17c7c" : "#a9a7a7"}}>
                 {count}/150
             </div>
-            <label className="file-input">
-                <input type="file"
-                       ref={fileRef}
-                       accept="image/png, image/gif, image/jpeg"
-                       onChange={onFileInputChange}/>
-                    <span>
-                        {
-                            selectedFile
-                                ?
-                                <div>
-                                    {getFormattedName(selectedFile.name)}
-                                </div>
-                                :
-                                <div>
-                                    Add image
-                                </div>
-                        }
-                    </span>
-            </label>
+            <FileInput imgInputRef={imgInputRef}
+                       selectedFile={selectedImage}
+                       setSelectedFile={setSelectedImage}
+                       caption="Add image"
+                       parentComponent="chat"/>
             <div className="send">
                 <button type="submit"
-                        disabled={!fileRef.current?.files && !messageRef.current?.value || count > 150}>
+                        disabled={!imgInputRef.current?.files && !messageInputRef.current?.value || count > 150}>
                     Send
                 </button>
             </div>
