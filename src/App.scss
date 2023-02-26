@@ -84,11 +84,16 @@ body {
 }
 
 .lobby-input {
-  padding: 15px;
+  padding: 18px;
+  font-size: 13px;
   margin: 10px 0px;
   border-radius: 5px;
   border: 1px solid gray;
   transition: all 0.4s ease-in-out;
+}
+
+.lobby-input::placeholder{
+  color: #afafaf;
 }
 
 .lobby-input:hover {

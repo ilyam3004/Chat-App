@@ -37,12 +37,6 @@ export const Lobby: FC<LobbyProps> = ({joinRoom, error, setError}) => {
         setUserData({...userData, [e.target.name]: e.target.value})
     }
 
-    const onImgInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-        if (e.target.files) {
-            setAvatar(e.target.files[0]);
-        }
-    }
-
     const getError = (): string => {
         if (error) {
             if (error.errors !== undefined) {
@@ -115,7 +109,8 @@ export const Lobby: FC<LobbyProps> = ({joinRoom, error, setError}) => {
                     <FileInput imgInputRef={avatarInputRef}
                                selectedFile={avatar}
                                setSelectedFile={setAvatar}
-                               caption={"Add avatar"}/>
+                               caption="Avatar"
+                               parentComponent="lobby"/>
                 </div>
                 <button className="lobby-button" type="submit">
                     Join
