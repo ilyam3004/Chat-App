@@ -3,6 +3,7 @@ import React, {FormEvent, useRef, FC, useState, ChangeEvent} from 'react';
 import {HubConnection} from "@microsoft/signalr";
 import {uploadImg} from "../../requests/uploadImg";
 import "../../App.scss";
+import {FileInput} from "./FileInput";
 
 interface ChatInputProps {
     connection: HubConnection;
@@ -14,17 +15,17 @@ export const ChatInput: FC<ChatInputProps> = ({connection, userData}) => {
     const messageInputRef = useRef<HTMLInputElement>(null);
     const imgInputRef = useRef<HTMLInputElement>(null);
     const [count, setCount] = useState<number>(0);
-    const [selectedFile, setSelectedFile] = useState<File | null>();
+    const [selectedImage, setSelectedImage] = useState<File | null>();
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setCount(0);
 
-        if (selectedFile) {
+        if (selectedImage) {
             imgInputRef.current!.value = '';
-            const uploadResult = await uploadImg(selectedFile);
+            const uploadResult = await uploadImg(selectedImage);
             await sendImage(uploadResult);
-            setSelectedFile(null);
+            setSelectedImage(null);
         }
 
         if (messageInputRef.current!.value.length > 0) {
@@ -36,12 +37,6 @@ export const ChatInput: FC<ChatInputProps> = ({connection, userData}) => {
     const onTextInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         e.preventDefault();
         setCount(e.target.value.length);
-    }
-
-    const onImgInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-        if (e.target.files) {
-            setSelectedFile(e.target.files[0]);
-        }
     }
 
     const sendMessage = async (message: string) => {
@@ -66,10 +61,6 @@ export const ChatInput: FC<ChatInputProps> = ({connection, userData}) => {
             console.log(e);
         }
     }
-    
-    const getFormattedName = (fileName: string): string => {
-        return fileName.length > 10 ? `${fileName.slice(0, 10)}...` : fileName;
-    }
 
     return (
         <form className="chat-input"
@@ -83,25 +74,10 @@ export const ChatInput: FC<ChatInputProps> = ({connection, userData}) => {
                  style={{color: count > 150 ? "#f17c7c" : "#a9a7a7"}}>
                 {count}/150
             </div>
-            <label className="file-input">
-                <input type="file"
-                       ref={imgInputRef}
-                       accept="image/png, image/gif, image/jpeg"
-                       onChange={onImgInputChange}/>
-                    <span>
-                        {
-                            selectedFile
-                                ?
-                                <div>
-                                    {getFormattedName(selectedFile.name)}
-                                </div>
-                                :
-                                <div>
-                                    Add image
-                                </div>
-                        }
-                    </span>
-            </label>
+            <FileInput imgInputRef={imgInputRef}
+                       selectedFile={selectedImage}
+                       setSelectedFile={setSelectedImage}
+                       caption="Add image"/>
             <div className="send">
                 <button type="submit"
                         disabled={!imgInputRef.current?.files && !messageInputRef.current?.value || count > 150}>
