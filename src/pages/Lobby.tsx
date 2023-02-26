@@ -3,6 +3,7 @@ import {IError, IJoinRoomRequest} from "../types/types";
 import {uploadAvatar, uploadImg} from "../requests/uploadImg";
 import {MoonLoader} from "react-spinners";
 import '../App.scss';
+import {FileInput} from "../components/inputs/FileInput";
 
 interface LobbyProps {
     joinRoom: (request: IJoinRoomRequest) => void;
@@ -14,8 +15,8 @@ export const Lobby: FC<LobbyProps> = ({joinRoom, error, setError}) => {
 
     const [userData, setUserData] = useState<IJoinRoomRequest>({username: '', roomName: '', avatar: ''});
     const [loading, setLoading] = useState(false);
-    const imgInputRef = useRef<HTMLInputElement>(null);
-    const [avatar, setAvatar] = useState<File | null>(null);
+    const avatarInputRef = useRef<HTMLInputElement>(null);
+    const [avatar, setAvatar] = useState<File | null>();
     const delayInSeconds: number = 2;
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -96,24 +97,25 @@ export const Lobby: FC<LobbyProps> = ({joinRoom, error, setError}) => {
                         data-testid="loader"/>
                 </div>
                 <div className="lobby-input-container">
-                    <label className="input-label">Username</label>
+                    <label className="input-label">Username </label>
                     <input className="lobby-input"
                            name="username"
                            type="text"
                            placeholder="Username"
                            required={true}
                            onChange={onChange}/>
-                    <label className="input-label">Roomname</label>
+                    <label className="input-label">Roomname </label>
                     <input className="lobby-input"
                            name="roomName"
                            type="text"
                            placeholder="Roomname"
                            required={true}
                            onChange={onChange}/>
-                    <input type="file"
-                           ref={imgInputRef}
-                           accept="image/png, image/gif, image/jpeg"
-                           onChange={onImgInputChange}/>
+                    <label className="not-required-input-label">Avatar</label>
+                    <FileInput imgInputRef={avatarInputRef}
+                               selectedFile={avatar}
+                               setSelectedFile={setAvatar}
+                               caption={"Add avatar"}/>
                 </div>
                 <button className="lobby-button" type="submit">
                     Join
