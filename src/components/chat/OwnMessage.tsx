@@ -28,8 +28,6 @@ export const OwnMessage: FC<ICurrentUserMessageProps> = ({message, formatTime, e
         }
     }, []);
 
-    console.log(message.userAvatar)
-
     return (
         <div className="message owner">
             <div className="message-info-container">

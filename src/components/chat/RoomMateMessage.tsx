@@ -26,7 +26,6 @@ export const RoomMateMessage: FC<IRoomMateMessageProps> = ({message, formatTime,
     useEffect(() => {
         if (!message.isImage) {
             endComponentRef.current?.scrollIntoView({behavior: "smooth"})
-            console.log(message);
         }
     }, []);
 

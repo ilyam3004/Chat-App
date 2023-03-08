@@ -30,7 +30,9 @@ export const ChatInput: FC<ChatInputProps> = ({connection, userData}) => {
 
         if (selectedImage) {
             imgInputRef.current!.value = '';
-            const uploadResult = await uploadImg(selectedImage);
+
+            const isAvatar: string = "false";
+            const uploadResult = await uploadImg(selectedImage, isAvatar);
             await sendImage(uploadResult);
             setSelectedImage(null);
         }
