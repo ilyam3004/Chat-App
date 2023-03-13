@@ -12,7 +12,6 @@ function App() {
     const [messages, setMessages] = useState<IMessage[]>([]);
     const [userData, setUserData] = useState<IUser | null>(null);
     const [error, setError] = useState<IError | null>(null);
-
     const navigate = useNavigate();
 
     const joinRoom = async (request: IJoinRoomRequest) => {
