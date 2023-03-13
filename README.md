@@ -1,8 +1,10 @@
-## ChatApp client
+# ChatApp client
+
+This is a simple chat client for the ChatApp [server](https://github.com/ilyam3004/Chat-App-Server). This client allows users to send and receive messages in real-time over the internet. Users can interact with one another through chat rooms/ Some common features of simple chat applications include creating rooms, join rooms, sending text images, message history and the ability to send images.
 
 ![](/src/assets/img/chat.jpg)
 
-This is a simple chat client for the ChatApp [server](https://github.com/ilyam3004/Chat-App-Server). This client allows users to send and receive messages in real-time over the internet. Users can interact with one another through chat rooms/ Some common features of simple chat applications include creating rooms, join rooms, sending text images, message history and the ability to send images.
+Wanna try it out? [Click here](https://chat-app-client-ilyam3004.vercel.app/) to go to the live demo.
 
 ## Technologies
 
@@ -13,3 +15,8 @@ This project was built using the following technologies:
 - [Moment](https://momentjs.com/) - for quick formatting dates
 - [Axios](https://axios-http.com/docs/intro) - for making HTTP requests
 - [SignalR](https://learn.microsoft.com/en-us/aspnet/signalr/overview/getting-started/introduction-to-signalr) - for creating web sockets
+
+## Support
+
+If you are having problems, please let me know by [raising a new issue](https://github.com/ilyam3004/ChatAppServer/issues).
+
