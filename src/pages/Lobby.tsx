@@ -1,4 +1,4 @@
-import React, {ChangeEvent, FC, FormEvent, useEffect, useRef, useState} from "react";
+import React, {FC, FormEvent, useEffect, useRef, useState} from "react";
 import {FileInput} from "../components/inputs/FileInput";
 import {IError, IJoinRoomRequest} from "../types/types";
 import {uploadImg} from "../requests/uploadImg";

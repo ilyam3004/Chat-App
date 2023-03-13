@@ -1,4 +1,4 @@
-import React, {Dispatch, FC, SetStateAction, useEffect, useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import {Sidebar} from "../components/bars/Sidebar";
 import {HubConnection} from "@microsoft/signalr";
 import {IMessage, IUser} from "../types/types";
