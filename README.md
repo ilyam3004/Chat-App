@@ -4,7 +4,7 @@ This is a simple chat client for the ChatApp [server](https://github.com/ilyam30
 
 ![](/src/assets/img/chat.jpg)
 
-Wanna try it out? [Click here](https://chat-app-client-ilyam3004.vercel.app/) to go to the live demo.
+Wanna try it out? [Click here](https://chat-app-psi-ruby.vercel.app/lobby) to go to the live demo.
 
 ## Technologies
 
