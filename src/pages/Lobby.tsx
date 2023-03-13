@@ -17,7 +17,6 @@ export const Lobby: FC<LobbyProps> = ({joinRoom, error, setError}) => {
     const [loading, setLoading] = useState(false);
     const avatarInputRef = useRef<HTMLInputElement>(null);
     const [avatar, setAvatar] = useState<File | null>();
-    const delayInSeconds: number = 2;
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -51,10 +50,7 @@ export const Lobby: FC<LobbyProps> = ({joinRoom, error, setError}) => {
 
     useEffect(() => {
         if (error) {
-            let timer = setTimeout(() => setLoading(false), delayInSeconds * 400)
-            return () => {
-                clearTimeout(timer);
-            };
+            setLoading(false);
         }
     }, [error]);
 

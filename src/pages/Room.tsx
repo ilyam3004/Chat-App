@@ -21,10 +21,7 @@ export const Room: FC<RoomProps> = ({userData, userList, messages, connection, c
     const [loading, setLoading] = useState<boolean>(true);
 
     useEffect(() => {
-        let timer: NodeJS.Timeout = setTimeout(() => setLoading(false), 2000);
-        return () => {
-            clearInterval(timer);
-        };
+        setLoading(false);
     }, []);
 
     return (
