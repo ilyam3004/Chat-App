@@ -59,7 +59,7 @@ export const Lobby: FC<LobbyProps> = ({joinRoom, error, setError}) => {
         <div className="lobby">
             <form className="lobby-form"
                   onSubmit={handleSubmit}>
-                <h1 className="lobby-title">Chat app</h1>
+                <h1 className="lobby-title">Roomify</h1>
                 {
                     error
                         ?

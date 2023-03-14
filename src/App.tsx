@@ -18,6 +18,7 @@ function App() {
         try {
             const connection = new HubConnectionBuilder()
                 .withUrl(`${process.env.REACT_APP_API_URL}/chatHub`)
+                .withAutomaticReconnect()
                 .configureLogging(LogLevel.Information)
                 .build();
 

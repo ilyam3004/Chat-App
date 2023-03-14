@@ -1,10 +1,10 @@
-# ChatApp client
+# Roomify client
 
-This is a simple chat client for the ChatApp [server](https://github.com/ilyam3004/Chat-App-Server). This client allows users to send and receive messages in real-time over the internet. Users can interact with one another through chat rooms/ Some common features of simple chat applications include creating rooms, join rooms, sending text images, message history and the ability to send images.
+This is a simple chat client for the Roomify [server](https://github.com/ilyam3004/Roomify-Server). This client allows users to send and receive messages in real-time over the internet. Users can interact with one another through chat rooms. Some common features of simple chat applications include creating rooms, join rooms, sending text images, message history and the ability to send images.
 
 ![](/src/assets/img/chat.jpg)
 
-Wanna try it out? [Click here](https://chat-app-psi-ruby.vercel.app/lobby) to go to the live demo.
+Wanna try it out? [Click here](https://www.rmify.com/lobby) to go to the live demo.
 
 ## Technologies
 
@@ -18,5 +18,9 @@ This project was built using the following technologies:
 
 ## Support
 
-If you are having problems, please let me know by [raising a new issue](https://github.com/ilyam3004/ChatAppServer/issues).
+If you are having problems, please let me know by [raising a new issue](https://github.com/ilyam3004/Roomify/issues).
+
+## License
+
+The project is licensed under the [MIT license](LICENSE).
 
